@@ -1,2 +1,1 @@
-# base-template
-Base template repository for drafts
+# draft-ietf-ippm-qoo
