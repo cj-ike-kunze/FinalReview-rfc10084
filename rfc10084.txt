@@ -1,16 +1,15 @@
+﻿
 
 
 
-
-IP Performance Measurement                             B. I. T. Monclair
-Internet-Draft                                                  M. Olden
-Intended status: Informational                             I. Kunze, Ed.
-Expires: 20 November 2026                                        CUJO AI
-                                                             19 May 2026
+Internet Engineering Task Force (IETF)                 B. I. T. Monclair
+Request for Comments: 0                                         M. Olden
+Category: Informational                                    I. Kunze, Ed.
+ISSN: 2070-1721                                                  CUJO AI
+                                                                May 2026
 
 
                         Quality of Outcome (QoO)
-                         draft-ietf-ippm-qoo-11
 
 Abstract
 
@@ -25,45 +24,21 @@ Abstract
    network troubleshooting and optimization, and simple Quality of
    Service scores for end-users.
 
-About This Document
-
-   This note is to be removed before publishing as an RFC.
-
-   Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-ietf-ippm-qoo/.
-
-   Discussion of this document takes place on the IP Performance
-   Measurement Working Group mailing list (mailto:ippm@ietf.org), which
-   is archived at https://mailarchive.ietf.org/arch/browse/ippm/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/ippm/.
-
-   Source for this draft and an issue tracker can be found at
-   https://github.com/getCUJO/QoOID.
-
 Status of This Memo
 
-   This Internet-Draft is submitted in full conformance with the
-   provisions of BCP 78 and BCP 79.
+   This document is not an Internet Standards Track specification; it is
+   published for informational purposes.
 
-   Internet-Drafts are working documents of the Internet Engineering
-   Task Force (IETF).  Note that other groups may also distribute
-   working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at https://datatracker.ietf.org/drafts/current/.
+   This document is a product of the Internet Engineering Task Force
+   (IETF).  It represents the consensus of the IETF community.  It has
+   received public review and has been approved for publication by the
+   Internet Engineering Steering Group (IESG).  Not all documents
+   approved by the IESG are candidates for any level of Internet
+   Standard; see Section 2 of RFC 7841.
 
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 1]
-
-Internet-Draft                     QoO                          May 2026
-
-
-   Internet-Drafts are draft documents valid for a maximum of six months
-   and may be updated, replaced, or obsoleted by other documents at any
-   time.  It is inappropriate to use Internet-Drafts as reference
-   material or to cite them other than as "work in progress."
-
-   This Internet-Draft will expire on 20 November 2026.
+   Information about the current status of this document, any errata,
+   and how to provide feedback on it may be obtained at
+   https://www.rfc-editor.org/info/rfc0.
 
 Copyright Notice
 
@@ -71,104 +46,90 @@ Copyright Notice
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents (https://trustee.ietf.org/
-   license-info) in effect on the date of publication of this document.
-   Please review these documents carefully, as they describe your rights
-   and restrictions with respect to this document.  Code Components
-   extracted from this document must include Revised BSD License text as
-   described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Revised BSD License.
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Revised BSD License text as described in Section 4.e of the
+   Trust Legal Provisions and are provided without warranty as described
+   in the Revised BSD License.
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   4
-     1.1.  What's In?  What's Out? . . . . . . . . . . . . . . . . .   4
-     1.2.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   5
-   2.  Background and Design Considerations  . . . . . . . . . . . .   7
-     2.1.  Background on Quality Attenuation . . . . . . . . . . . .   7
-     2.2.  QoO Design Considerations . . . . . . . . . . . . . . . .   8
-   3.  The QoO Framework . . . . . . . . . . . . . . . . . . . . . .   9
-     3.1.  Measuring Network Performance . . . . . . . . . . . . . .  10
-       3.1.1.  Measurement Considerations  . . . . . . . . . . . . .  11
-       3.1.2.  Reporting Measurement Results . . . . . . . . . . . .  12
-     3.2.  Describing Network Performance Requirements . . . . . . .  14
-       3.2.1.  Specification Guidelines  . . . . . . . . . . . . . .  15
+   1.  Introduction
+     1.1.  What's In?  What's Out?
+     1.2.  Terminology
+   2.  Background and Design Considerations
+     2.1.  Background on Quality Attenuation
+     2.2.  QoO Design Considerations
+   3.  The QoO Framework
+     3.1.  Measuring Network Performance
+       3.1.1.  Measurement Considerations
+       3.1.2.  Reporting Measurement Results
+     3.2.  Describing Network Performance Requirements
+       3.2.1.  Specification Guidelines
        3.2.2.  Creating a Network Performance Requirement
-               Specification . . . . . . . . . . . . . . . . . . . .  16
-     3.3.  Calculating QoO . . . . . . . . . . . . . . . . . . . . .  16
-       3.3.1.  Overall QoO Calculation . . . . . . . . . . . . . . .  17
-       3.3.2.  Latency Component . . . . . . . . . . . . . . . . . .  17
-       3.3.3.  Packet Loss Component . . . . . . . . . . . . . . . .  18
-       3.3.4.  Throughput Component  . . . . . . . . . . . . . . . .  18
-     3.4.  Example . . . . . . . . . . . . . . . . . . . . . . . . .  19
-   4.  Operational Considerations  . . . . . . . . . . . . . . . . .  20
-     4.1.  QoO in the Quality Assessment Landscape . . . . . . . . .  20
-     4.2.  Composability, Flexibility, and Use Cases . . . . . . . .  21
-     4.3.  Aligning Measurements with Service Levels . . . . . . . .  21
-     4.4.  Path Stability and Temporal Validity  . . . . . . . . . .  22
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 2]
-
-Internet-Draft                     QoO                          May 2026
-
-
-     4.5.  Multipath Protocols . . . . . . . . . . . . . . . . . . .  23
-     4.6.  Adaptive Applications . . . . . . . . . . . . . . . . . .  23
-     4.7.  Continuous Measurements . . . . . . . . . . . . . . . . .  24
-     4.8.  Sensitivity to Sampling Accuracy  . . . . . . . . . . . .  25
+               Specification
+     3.3.  Calculating QoO
+       3.3.1.  Overall QoO Calculation
+       3.3.2.  Latency Component
+       3.3.3.  Packet Loss Component
+       3.3.4.  Throughput Component
+     3.4.  Example
+   4.  Operational Considerations
+     4.1.  QoO in the Quality Assessment Landscape
+     4.2.  Composability, Flexibility, and Use Cases
+     4.3.  Aligning Measurements with Service Levels
+     4.4.  Path Stability and Temporal Validity
+     4.5.  Multipath Protocols
+     4.6.  Adaptive Applications
+     4.7.  Continuous Measurements
+     4.8.  Sensitivity to Sampling Accuracy
      4.9.  A Subjective Approach to Creating Network Performance
-           Requirement Specifications  . . . . . . . . . . . . . . .  26
-   5.  Known Weaknesses and Open Questions . . . . . . . . . . . . .  27
-     5.1.  Volatile Networks . . . . . . . . . . . . . . . . . . . .  27
-     5.2.  Missing Temporal Information in Distributions . . . . . .  28
-     5.3.  Subsampling the Real Distribution . . . . . . . . . . . .  28
+           Requirement Specifications
+   5.  Known Weaknesses and Open Questions
+     5.1.  Volatile Networks
+     5.2.  Missing Temporal Information in Distributions
+     5.3.  Subsampling the Real Distribution
      5.4.  Assuming Linear Relationship Between Optimal Performance
-           and Unusable  . . . . . . . . . . . . . . . . . . . . . .  28
-     5.5.  Binary Throughput Threshold . . . . . . . . . . . . . . .  29
-     5.6.  Arbitrary Selection of Percentiles  . . . . . . . . . . .  29
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  29
-     6.1.  Measurement Integrity and Authenticity  . . . . . . . . .  30
-     6.2.  Risk of Misuse and Gaming . . . . . . . . . . . . . . . .  30
-     6.3.  Denial-of-Service (DoS) Risks . . . . . . . . . . . . . .  30
-     6.4.  Trust in Application Requirements . . . . . . . . . . . .  31
-   7.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  31
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
-   9.  Implementation status . . . . . . . . . . . . . . . . . . . .  32
-     9.1.  qoo-c . . . . . . . . . . . . . . . . . . . . . . . . . .  32
-     9.2.  goresponsiveness  . . . . . . . . . . . . . . . . . . . .  33
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  34
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  34
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  34
-   Appendix A.  QoO Framework Design Considerations  . . . . . . . .  41
-     A.1.  General Requirements  . . . . . . . . . . . . . . . . . .  43
-     A.2.  Requirements from End-Users . . . . . . . . . . . . . . .  44
-     A.3.  Requirements from Application and Platform Developers . .  45
+           and Unusable
+     5.5.  Binary Throughput Threshold
+     5.6.  Arbitrary Selection of Percentiles
+   6.  Security Considerations
+     6.1.  Measurement Integrity and Authenticity
+     6.2.  Risk of Misuse and Gaming
+     6.3.  Denial-of-Service (DoS) Risks
+     6.4.  Trust in Application Requirements
+   7.  Privacy Considerations
+   8.  IANA Considerations
+   9.  Implementation status
+     9.1.  qoo-c
+     9.2.  goresponsiveness
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
+   Appendix A.  QoO Framework Design Considerations
+     A.1.  General Requirements
+     A.2.  Requirements from End-Users
+     A.3.  Requirements from Application and Platform Developers
      A.4.  Requirements from Network Operators and Network Solution
-           Vendors . . . . . . . . . . . . . . . . . . . . . . . . .  46
-   Appendix B.  Comparison To Other Network Quality Metrics  . . . .  47
-     B.1.  Throughput  . . . . . . . . . . . . . . . . . . . . . . .  49
-     B.2.  Mean Latency  . . . . . . . . . . . . . . . . . . . . . .  49
-     B.3.  99th Percentile of Latency  . . . . . . . . . . . . . . .  50
-     B.4.  Variance of Latency . . . . . . . . . . . . . . . . . . .  50
-     B.5.  Inter-Packet Delay Variation (IPDV) . . . . . . . . . . .  50
-     B.6.  Packet Delay Variation (PDV)  . . . . . . . . . . . . . .  51
-     B.7.  Trimmed Mean of Latency . . . . . . . . . . . . . . . . .  51
-     B.8.  Round-trips Per Minute  . . . . . . . . . . . . . . . . .  51
-     B.9.  Quality Attenuation . . . . . . . . . . . . . . . . . . .  51
-     B.10. Quality of Outcome  . . . . . . . . . . . . . . . . . . .  52
+           Vendors
+   Appendix B.  Comparison To Other Network Quality Metrics
+     B.1.  Throughput
+     B.2.  Mean Latency
+     B.3.  99th Percentile of Latency
+     B.4.  Variance of Latency
+     B.5.  Inter-Packet Delay Variation (IPDV)
+     B.6.  Packet Delay Variation (PDV)
+     B.7.  Trimmed Mean of Latency
+     B.8.  Round-trips Per Minute
+     B.9.  Quality Attenuation
+     B.10. Quality of Outcome
    Appendix C.  Preliminary Insights From a Small-Scale User Testing
-           Campaign  . . . . . . . . . . . . . . . . . . . . . . . .  52
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  53
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  53
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 3]
-
-Internet-Draft                     QoO                          May 2026
-
+           Campaign
+   Acknowledgments
+   Authors' Addresses
 
 1.  Introduction
 
@@ -218,14 +179,6 @@ Internet-Draft                     QoO                          May 2026
    *  Guidelines for specifying quality-focused network performance
       requirements (Section 3.2)
 
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 4]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  Calculation formulas for computing QoO scores (Section 3.3)
 
    The document also discusses operational considerations (Section 4)
@@ -273,15 +226,6 @@ Internet-Draft                     QoO                          May 2026
       which independent quality measurements and analysis are desired.
 
    Quality Attenuation:  A network quality metric defined in [TR-452.1]
-
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 5]
-
-Internet-Draft                     QoO                          May 2026
-
-
       that combines latency and packet loss distributions in a unified
       approach to jointly assess latency and loss characteristics of
       network performance.
@@ -331,13 +275,6 @@ Internet-Draft                     QoO                          May 2026
       decomposed to isolate specific network components for analysis and
       troubleshooting.
 
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 6]
-
-Internet-Draft                     QoO                          May 2026
-
-
    Accuracy and precision:  "Accuracy" refers to how close measurements
       are to the value that reflects the real conditions.  "Precision"
       refers to the consistency and repeatability of measurements.
@@ -383,17 +320,6 @@ Internet-Draft                     QoO                          May 2026
    isolation and root cause analysis by identifying which portions of a
    network path contribute most to performance degradation.
 
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 7]
-
-Internet-Draft                     QoO                          May 2026
-
-
 2.2.  QoO Design Considerations
 
    Quality Attenuation provides a mathematically rigorous foundation for
@@ -432,23 +358,6 @@ Internet-Draft                     QoO                          May 2026
    The QoO framework addresses this need by enabling both simple and
    complex requirement specifications, accommodating developers with
    varying levels of networking expertise.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 8]
-
-Internet-Draft                     QoO                          May 2026
-
 
    Network operators need tools for fault isolation, performance
    comparison, and bottleneck identification.  The QoO framework
@@ -498,14 +407,6 @@ Internet-Draft                     QoO                          May 2026
    *  Optimal performance (ROP): Network conditions under which
       application performance becomes optimal
 
-
-
-
-Monclair, et al.        Expires 20 November 2026                [Page 9]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  Unacceptable performance (CPUP): Network conditions under which
       application performance becomes unacceptable
 
@@ -553,14 +454,6 @@ Internet-Draft                     QoO                          May 2026
       (TWAMP) Light [RFC5357], the Simple Two-Way Active Measurement
       Protocol (STAMP) [RFC8762], or the Isochronous Round-Trip Tester
       (IRTT) [IRTT]
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 10]
-
-Internet-Draft                     QoO                          May 2026
-
 
    *  On-path telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
 
@@ -610,14 +503,6 @@ Internet-Draft                     QoO                          May 2026
    the framework.  Instead, reporting latency at selected percentiles
    offers a practical compromise between accuracy and deployment
    considerations, trading off composability, which is only possible
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 11]
-
-Internet-Draft                     QoO                          May 2026
-
-
    with distributions, for an easier deployment.  A commonly accepted
    set of percentiles spanning from the 0th to the 100th in a
    logarithmic-like progression has been suggested by others [BITAG] and
@@ -667,13 +552,6 @@ Internet-Draft                     QoO                          May 2026
 
    *  Description of the measurement method, including:
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 12]
-
-Internet-Draft                     QoO                          May 2026
-
-
       -  Standard name (if applicable) or reference
 
       -  Measurement class (Active, Passive, or Hybrid) [RFC7799]
@@ -720,15 +598,6 @@ Internet-Draft                     QoO                          May 2026
    [QoOSimStudy] and discussed in Section 4.8, low sampling frequencies
    and short measurement durations can lead to misleadingly optimistic
    or imprecise QoO scores.
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 13]
-
-Internet-Draft                     QoO                          May 2026
-
 
    To assess the precision of network performance measurements,
    implementers should consider:
@@ -777,14 +646,6 @@ Internet-Draft                     QoO                          May 2026
    becomes unacceptable if 99% of packets have not arrived within 200ms,
    or 99.9% within 300ms, or if there is more than 2% packet loss
    (CPUP).  The underlying minimum throughput requirement is 4Mbps.
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 14]
-
-Internet-Draft                     QoO                          May 2026
-
 
                                       CPUP              ROP
                                         v                v
@@ -835,13 +696,6 @@ Internet-Draft                     QoO                          May 2026
    ROP must also include the 99.9th percentile, and if the ROP uses the
    99th percentile then the CPUP must also include the 99th percentile.
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 15]
-
-Internet-Draft                     QoO                          May 2026
-
-
    Finally, the network performance requirement specification must
    specify if the requirements are one-way or two-way.  If the
    requirement is one-way, the direction between the endpoints of the
@@ -890,14 +744,6 @@ Internet-Draft                     QoO                          May 2026
    performance.  The QoO score reflects the directionality (one-way or
    two-way) used in the measurements and the requirements; all need to
    use the same directionality and, for one-way assessments, the same
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 16]
-
-Internet-Draft                     QoO                          May 2026
-
-
    direction (source-to-destination or destination-to-source).  There
    are three key scenarios:
 
@@ -945,14 +791,6 @@ Internet-Draft                     QoO                          May 2026
    The QoO latency score is based on linear interpolations of the
    latency values at all latency percentiles defined in ROP / CPUP and
    represents the minimum value for all percentiles:
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 17]
-
-Internet-Draft                     QoO                          May 2026
-
 
    for i in latency_percentiles:
      m = 1 - ((ML[i] - ROP[i]) / (CPUP[i] - ROP[i]))
@@ -1003,13 +841,6 @@ Internet-Draft                     QoO                          May 2026
 
    *  M_Throughput is the measured throughput.
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 18]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  R_Throughput is the minimum required throughput.
 
 3.4.  Example
@@ -1052,19 +883,6 @@ Internet-Draft                     QoO                          May 2026
    Overall QoO score:
 
 QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 19]
-
-Internet-Draft                     QoO                          May 2026
-
 
    In this example, the network scores 50% on the QoO assessment range
    between unacceptable and optimal for the given application when using
@@ -1114,14 +932,6 @@ Internet-Draft                     QoO                          May 2026
    measurements are transformed: Quality Attenuation preserves the full
    distributional detail needed for convolution and per-hop
    decomposition, while QoO trades that detail for an application-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 20]
-
-Internet-Draft                     QoO                          May 2026
-
-
    anchored score that is immediately actionable.  Since both rely on
    the same underlying data, switching between Quality Attenuation and
    QoO requires no additional measurements, so operators can use QoO to
@@ -1168,15 +978,6 @@ Internet-Draft                     QoO                          May 2026
 
    *  Measurements are taken using the same connectivity service level
       that will be used by the application
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 21]
-
-Internet-Draft                     QoO                          May 2026
-
 
    *  The measurement methodology accounts for any traffic
       prioritization, differentiated services, or QoS mechanisms that
@@ -1227,13 +1028,6 @@ Internet-Draft                     QoO                          May 2026
    networks, where path and capacity can change by an order of magnitude
    within seconds (see also Section 5.1).
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 22]
-
-Internet-Draft                     QoO                          May 2026
-
-
 4.5.  Multipath Protocols
 
    A related challenge arises when the application itself uses a
@@ -1277,18 +1071,6 @@ Internet-Draft                     QoO                          May 2026
    behavior based on network conditions.  For example, video streaming
    applications may reduce bit rate when available network capacity is
    limited, or increase buffer size when latency is high.
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 23]
-
-Internet-Draft                     QoO                          May 2026
-
 
    For adaptive applications, there are typically different levels of
    optimal performance rather than a single absolute threshold.  For
@@ -1336,16 +1118,6 @@ Internet-Draft                     QoO                          May 2026
    recent T seconds provide a continuously updated view of network
    quality, balancing responsiveness with stability.
 
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 24]
-
-Internet-Draft                     QoO                          May 2026
-
-
    Measurements can also be grouped around specific events, such as user
    sessions or application usage periods.  This approach can improve
    relevance for end-user-facing scores but may introduce selection
@@ -1392,15 +1164,6 @@ Internet-Draft                     QoO                          May 2026
 
    From these findings, the following guidelines for practical
    application are deduced:
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 25]
-
-Internet-Draft                     QoO                          May 2026
-
 
    *  Calibrate the combination of sampling rate and total measurement
       period to capture fat-tailed distributions of latency with
@@ -1450,14 +1213,6 @@ Internet-Draft                     QoO                          May 2026
    and measure these user-facing metrics during tests to correlate the
    metrics with the network conditions.
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 26]
-
-Internet-Draft                     QoO                          May 2026
-
-
    Using this scenario, one can first establish a baseline under
    excellent network conditions.  Network conditions can then be
    gradually worsened by adding delay or packet loss or decreasing
@@ -1506,14 +1261,6 @@ Internet-Draft                     QoO                          May 2026
    Radio access networks are prone to volatility: the available capacity
    for a given user device can change by an order of magnitude within
    seconds due to physical radio factors.  This is especially the case
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 27]
-
-Internet-Draft                     QoO                          May 2026
-
-
    in mobile cellular networks ([CellularPredictability]) due to the
    increased transmission distance and the difficulty of adding new
    access points or repeaters (in comparison to e.g. Wi-Fi).  Other
@@ -1563,13 +1310,6 @@ Internet-Draft                     QoO                          May 2026
    the QoO framework adds an error in estimating the perceived
    performance of interactive applications.
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 28]
-
-Internet-Draft                     QoO                          May 2026
-
-
    One can conjure up scenarios where 50ms latency is actually worse
    than 51ms latency as developers may have chosen 50ms as the threshold
    for changing quality, and the threshold may be imperfect.  Taking
@@ -1610,21 +1350,6 @@ Internet-Draft                     QoO                          May 2026
    considerations arise from its deployment and use.  In addition to the
    considerations discussed below, implementers are also encouraged to
    consider the security considerations outlined in [RFC7594].
-
-
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 29]
-
-Internet-Draft                     QoO                          May 2026
-
 
 6.1.  Measurement Integrity and Authenticity
 
@@ -1674,14 +1399,6 @@ Internet-Draft                     QoO                          May 2026
 
    To mitigate these risks, the following is recommended:
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 30]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  Implement rate-limiting and access control for active measurement
       tools, e.g., similar to recommendations for the One-way Active
       Measurement Protocol [RFC4656].
@@ -1728,15 +1445,6 @@ Internet-Draft                     QoO                          May 2026
    *  Users should be informed about what data is collected and how it
       is used, in accordance with applicable privacy regulations (e.g.,
       General Data Protection Regulation (GDPR)).
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 31]
-
-Internet-Draft                     QoO                          May 2026
-
 
 8.  IANA Considerations
 
@@ -1786,14 +1494,6 @@ Internet-Draft                     QoO                          May 2026
       A complete implementation of the specification described in this
       document
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 32]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  Coverage:
 
       The library is tested with unit tests
@@ -1842,14 +1542,6 @@ Internet-Draft                     QoO                          May 2026
 
       The QoO part is tested with unit tests
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 33]
-
-Internet-Draft                     QoO                          May 2026
-
-
    *  Licensing:
 
       GPL 2.0
@@ -1883,9 +1575,9 @@ Internet-Draft                     QoO                          May 2026
               <https://www.rfc-editor.org/rfc/rfc6390>.
 
    [TR-452.1] Broadband Forum, "TR-452.1: Quality Attenuation
-              Measurement Architecture and Requirements", September
-              2020,
-              <https://www.broadband-forum.org/download/TR-452.1.pdf>.
+              Measurement Architecture and Requirements", TR-452.1,
+              Revision 1, September 2020,
+              <https://www.broadband-forum.org/pdfs/tr-452.1-1-0-0.pdf>.
 
 10.2.  Informative References
 
@@ -1894,73 +1586,53 @@ Internet-Draft                     QoO                          May 2026
               BITAG_latency_explained.pdf>.
 
    [Bufferbloat]
-              "Bufferbloat: Dark buffers in the Internet", n.d.,
-              <https://queue.acm.org/detail.cfm?id=2071893>.
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 34]
-
-Internet-Draft                     QoO                          May 2026
-
+              Gettys, J. and K. Nichols, "Bufferbloat: Dark buffers in
+              the Internet", ACM Queue, vol. 9, no. 11, 29 November
+              2011, <https://queue.acm.org/detail.cfm?id=2071893>.
 
    [CellularPredictability]
               Basit, O., Dinh, P., Khan, I., Kong, Z., Hu, Y.,
               Koutsonikolas, D., Lee, M., and C. Liu, "On the
               Predictability of Fine-Grained Cellular Network Throughput
-              Using Machine Learning Models", IEEE, 2024 IEEE 21st
+              Using Machine Learning Models", 2024 IEEE 21st
               International Conference on Mobile Ad-Hoc and Smart
-              Systems (MASS) pp. 47-56,
+              Systems (MASS), pp. 47-56,
               DOI 10.1109/mass62177.2024.00018, September 2024,
               <https://doi.org/10.1109/mass62177.2024.00018>.
 
    [CSGO]     Xu, X., Liu, S., and M. Claypool, "The Effects of Network
-              Latency on Counter-strike: Global Offensive Players",
-              IEEE, 2022 14th International Conference on Quality of
-              Multimedia Experience (QoMEX) pp. 1-6,
+              Latency on Counter-strike: Global Offensive Players", 2022
+              14th International Conference on Quality of Multimedia
+              Experience (QoMEX), pp. 1-6,
               DOI 10.1109/qomex55416.2022.9900915, September 2022,
               <https://doi.org/10.1109/qomex55416.2022.9900915>.
 
    [G.1051]   ITU-T, "Latency measurement and interactivity scoring
-              under real application data traffic patterns",
-              ITU-T G.1051, March 2023,
+              under real application data traffic patterns", ITU-T
+              Recommendation G.1051, March 2023,
               <https://www.itu.int/rec/T-REC-G.1051>.
 
-   [Haeri22]  "Mind Your Outcomes: The ΔQSD Paradigm for Quality-Centric
-              Systems Development and Its Application to a Blockchain
-              Case Study", n.d.,
-              <https://www.mdpi.com/2073-431X/11/3/45>.
+   [Haeri22]  Haeri, S., Thompson, P., Davies, N., Van Roy, P., Hammond,
+              K., and J. Chapman, "Mind Your Outcomes: The ΔQSD Paradigm
+              for Quality-Centric Systems Development and Its
+              Application to a Blockchain Case Study", Computers, vol.
+              11, no. 3, pp. 45, DOI 10.3390/computers11030045, March
+              2022, <https://doi.org/10.3390/computers11030045>.
 
    [I-D.ietf-ippm-responsiveness]
               Paasch, C., Meyer, R., Cheshire, S., and W. Hawkins,
               "Responsiveness under Working Conditions", Work in
               Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
-              08, 20 October 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
-              responsiveness-08>.
+              09, 6 July 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ippm-responsiveness-09>.
 
    [I-D.ietf-opsawg-rfc5706bis]
               Claise, B., Clarke, J., Farrel, A., Barguil, S.,
               Pignataro, C., and R. Chen, "Guidelines for Considering
               Operations and Management in IETF Specifications", Work in
-              Progress, Internet-Draft, draft-ietf-opsawg-rfc5706bis-04,
-              15 March 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-rfc5706bis-04>.
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 35]
-
-Internet-Draft                     QoO                          May 2026
-
+              Progress, Internet-Draft, draft-ietf-opsawg-rfc5706bis-09,
+              6 October 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-rfc5706bis-09>.
 
    [I-D.ietf-quic-multipath]
               Liu, Y., Ma, Y., De Coninck, Q., Bonaventure, O., Huitema,
@@ -1970,21 +1642,24 @@ Internet-Draft                     QoO                          May 2026
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               multipath-21>.
 
-   [IRTT]     "Isochronous Round-Trip Tester", n.d.,
-              <https://github.com/heistp/irtt>.
+   [IRTT]     "Isochronous Round-Trip Tester", commit df70f1e, 1 August
+              2026, <https://github.com/heistp/irtt>.
 
    [ISO5725-1]
               ISO, "Accuracy (trueness and precision) of measurement
-              methods and results Part 1: General principles and
-              definitions", ISO 5725-1:2023, July 2022,
+              methods and results -- Part 1: General principles and
+              definitions", ISO 5725-1:2023, July 2023,
               <https://www.iso.org/standard/69418.html>.
 
-   [JamKazam] Wilson, D., "What is Latency and Why does it matter?",
-              n.d., <https://jamkazam.freshdesk.com/support/solutions/
+   [JamKazam] Wilson, D., "What is Latency and Why does it matter?", 3
+              September 2020,
+              <https://jamkazam.freshdesk.com/support/solutions/
               articles/66000122532-what-is-latency-why-does-it-
               matter-?>.
 
-   [Kelly]    Kelly, F. P., "Networks of Queues", n.d.,
+   [Kelly]    Kelly, F. P., "Networks of Queues", Advances in Applied
+              Probability, vol. 8, no. 2, pp. 416-432,
+              DOI 10.2307/1425912, June 1976,
               <https://www.cambridge.org/core/journals/advances-in-
               applied-probability/article/abs/networks-of-
               queues/38A1EA868A62B09C77A073BECA1A1B56>.
@@ -1993,59 +1668,54 @@ Internet-Draft                     QoO                          May 2026
               Li, C., Nasr-Esfahany, A., Zhao, K., Noorbakhsh, K.,
               Goyal, P., Alizadeh, M., and T. Anderson, "m3: Accurate
               Flow-Level Performance Estimation using Machine Learning",
-              ACM, Proceedings of the ACM SIGCOMM 2024 Conference pp.
+              Proceedings of the ACM SIGCOMM 2024 Conference, pp.
               813-827, DOI 10.1145/3651890.3672243, August 2024,
               <https://doi.org/10.1145/3651890.3672243>.
 
    [P.10]     ITU-T, "Vocabulary for performance, quality of service and
-              quality of experience", ITU-T P.10/G.100, November 2017,
-              <https://www.itu.int/rec/T-REC-P.10>.
-
-   [P.1401]   ITU-T, "Methods, metrics and procedures for statistical
-              evaluation, qualification and comparison of objective
-              quality prediction models", ITU-T P.1401, January 2020,
-              <https://www.itu.int/rec/T-REC-P.1401>.
+              quality of experience", ITU-T Recommendation P.10/G.100,
+              November 2017, <https://www.itu.int/rec/T-REC-P.10>.
 
    [P.800]    ITU-T, "Methods for subjective determination of
-              transmission quality", ITU-T P.800, August 1996,
-              <https://www.itu.int/rec/T-REC-P.800>.
+              transmission quality", ITU-T Recommendation P.800, August
+              1996, <https://www.itu.int/rec/T-REC-P.800>.
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 36]
-
-Internet-Draft                     QoO                          May 2026
-
-
-   [P.800.1]  ITU-T, "Mean opinion score (MOS) terminology",
-              ITU-T P.800.1, July 2016,
+   [P.800.1]  ITU-T, "Mean opinion score (MOS) terminology", ITU-T
+              Recommendation P.800.1, July 2016,
               <https://www.itu.int/rec/T-REC-P.800.1>.
 
    [P.910]    ITU-T, "Subjective video quality assessment methods for
-              multimedia applications", ITU-T P.910, October 2023,
-              <https://www.itu.int/rec/T-REC-P.910>.
+              multimedia applications", ITU-T Recommendation P.910,
+              October 2023, <https://www.itu.int/rec/T-REC-P.910>.
+
+   [P.1401]   ITU-T, "Methods, metrics and procedures for statistical
+              evaluation, qualification and comparison of objective
+              quality prediction models", ITU-T Recommendation P.1401,
+              January 2020, <https://www.itu.int/rec/T-REC-P.1401>.
 
    [QoOAppQualityReqs]
-              Østensen, T., "Performance Measurement of Web
-              Applications", n.d., <https://domos.ai/storage/
+              Østensen, T. and B. I. T. Monclair, "Performance
+              Measurement of Web Applications", July 2024,
+              <https://domos.ai/storage/
               U6TlxIlbcl1dQfcNhnCleziJWF23P5w0xWzOARh8-published.pdf>.
 
    [QoOSimStudy]
               Monclair, B. I. T., "Quality of Outcome Simulation Study",
-              n.d., <https://github.com/getCUJO/qoosim>.
+              commit a1730c6, 23 January 2025,
+              <https://github.com/getCUJO/qoosim>.
 
    [QoOUserStudy]
-              Monclair, B. I. T., "Application Outcome Aware Root Cause
-              Analysis", n.d., <https://domos.ai/storage/
+              Monclair, B. I. T., Olden, M., and N. Stolpestad,
+              "Application Outcome Aware Root Cause Analysis", September
+              2024, <https://domos.ai/storage/
               LaiW4tJQ2kj4OOTiZbnf48MbS22rQHcZQmCriih9-published.pdf>.
 
    [QoSPrediction]
               Moreno, N., Dsouza, F., Kassler, A., Pullem, F., Xu, B.,
               Amend, M., and C. Choi, "QoS and Capacity Prediction for
-              5G Network Slicing", IEEE, 2025 21st International
-              Conference on Network and Service Management (CNSM) pp.
-              1-5, DOI 10.23919/cnsm67658.2025.11297458, October 2025,
+              5G Network Slicing", 2025 21st International Conference on
+              Network and Service Management (CNSM), pp. 1-5,
+              DOI 10.23919/cnsm67658.2025.11297458, October 2025,
               <https://doi.org/10.23919/cnsm67658.2025.11297458>.
 
    [RFC2330]  Paxson, V., Almes, G., Mahdavi, J., and M. Mathis,
@@ -2066,13 +1736,6 @@ Internet-Draft                     QoO                          May 2026
               Metric for IP Performance Metrics (IPPM)", RFC 3393,
               DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/rfc/rfc3393>.
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 37]
-
-Internet-Draft                     QoO                          May 2026
-
 
    [RFC4656]  Shalunov, S., Teitelbaum, B., Karp, A., Boote, J., and M.
               Zekauskas, "A One-way Active Measurement Protocol
@@ -2122,14 +1785,6 @@ Internet-Draft                     QoO                          May 2026
               (IPPM)", STD 82, RFC 7680, DOI 10.17487/RFC7680, January
               2016, <https://www.rfc-editor.org/rfc/rfc7680>.
 
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 38]
-
-Internet-Draft                     QoO                          May 2026
-
-
    [RFC7799]  Morton, A., "Active and Passive Metrics and Methods (with
               Hybrid Types In-Between)", RFC 7799, DOI 10.17487/RFC7799,
               May 2016, <https://www.rfc-editor.org/rfc/rfc7799>.
@@ -2175,16 +1830,6 @@ Internet-Draft                     QoO                          May 2026
               Defining Packet Timestamps", RFC 8877,
               DOI 10.17487/RFC8877, September 2020,
               <https://www.rfc-editor.org/rfc/rfc8877>.
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 39]
-
-Internet-Draft                     QoO                          May 2026
-
 
    [RFC8912]  Morton, A., Bagnulo, M., Eardley, P., and K. D'Souza,
               "Initial Performance Metrics Registry Entries", RFC 8912,
@@ -2235,28 +1880,22 @@ Internet-Draft                     QoO                          May 2026
               <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
               responsiveness>.
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 40]
-
-Internet-Draft                     QoO                          May 2026
-
-
-   [RRUL]     "Real-time response under load test specification", n.d.,
+   [RRUL]     Täht, D., "Real-time response under load test
+              specification", 6 November 2012,
               <https://www.bufferbloat.net/projects/bloat/wiki/
               RRUL_Spec/>.
 
    [TCPContinuous]
               Sengupta, S., Kim, H., and J. Rexford, "Continuous in-
-              network round-trip time monitoring", ACM, Proceedings of
-              the ACM SIGCOMM 2022 Conference pp. 473-485,
+              network round-trip time monitoring", Proceedings of the
+              ACM SIGCOMM 2022 Conference, pp. 473-485,
               DOI 10.1145/3544216.3544222, August 2022,
               <https://doi.org/10.1145/3544216.3544222>.
 
    [TCPHandshake]
               Apostolaki, M., Singla, A., and L. Vanbever, "Performance-
-              Driven Internet Path Selection", ACM, Proceedings of the
-              ACM SIGCOMM Symposium on SDN Research (SOSR) pp. 41-53,
+              Driven Internet Path Selection", Proceedings of the ACM
+              SIGCOMM Symposium on SDN Research (SOSR), pp. 41-53,
               DOI 10.1145/3482898.3483366, October 2021,
               <https://doi.org/10.1145/3482898.3483366>.
 
@@ -2264,16 +1903,15 @@ Internet-Draft                     QoO                          May 2026
               MacMillan, K., Mangla, T., Saxon, J., Marwell, N., and N.
               Feamster, "A Comparative Analysis of Ookla Speedtest and
               Measurement Labs Network Diagnostic Test (NDT7)",
-              Association for Computing Machinery (ACM), Proceedings of
-              the ACM on Measurement and Analysis of Computing
-              Systems vol. 7, no. 1, pp. 1-26, DOI 10.1145/3579448,
-              February 2023, <https://doi.org/10.1145/3579448>.
+              Proceedings of the ACM on Measurement and Analysis of
+              Computing Systems, vol. 7, no. 1, pp. 1-26,
+              DOI 10.1145/3579448, February 2023,
+              <https://doi.org/10.1145/3579448>.
 
    [XboxNetReqs]
               Microsoft, "Understanding your remote play setup test
-              results", n.d., <https://support.xbox.com/en-US/help/
-              hardware-network/connect-network/console-streaming-test-
-              results>.
+              results", <https://support.xbox.com/en-US/help/hardware-
+              network/connect-network/console-streaming-test-results>.
 
 Appendix A.  QoO Framework Design Considerations
 
@@ -2290,14 +1928,6 @@ Appendix A.  QoO Framework Design Considerations
    address the needs of one or two of these stakeholders, but there is
    none that bridges the needs of all three.  Examples include
    throughput metrics that operators use to prove regulatory compliance
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 41]
-
-Internet-Draft                     QoO                          May 2026
-
-
    but with little relevance to application performance, or subjective
    QoE metrics that are understandable to users but difficult for
    operators to collect at meaningful scale.
@@ -2346,14 +1976,6 @@ Internet-Draft                     QoO                          May 2026
    was the statement, "A really meaningful metric for users is whether
    their application will work properly or fail because of a lack of a
    network with sufficient characteristics" [RFC9318].  Therefore, one
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 42]
-
-Internet-Draft                     QoO                          May 2026
-
-
    critical requirement for a meaningful framework is its ability to
    answer the following question: "Will networking conditions prevent an
    application from working as intended?".
@@ -2402,14 +2024,6 @@ A.1.  General Requirements
    prioritization, network slicing, VPN services, or other
    differentiated service mechanisms (see Section 4.3).  Flexibility in
    describing application requirements and the ability to capture the
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 43]
-
-Internet-Draft                     QoO                          May 2026
-
-
    delay and loss characteristics of a network with sufficient accuracy
    and precision are necessary to compute a meaningful QoO network
    quality score that can be used to better estimate application
@@ -2458,14 +2072,6 @@ A.2.  Requirements from End-Users
    End-users may have individual tolerances of session quality (i.e.,
    the quality experienced during a single application usage period,
    such as a video call or gaming session), below which their quality of
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 44]
-
-Internet-Draft                     QoO                          May 2026
-
-
    experience becomes personally unacceptable.  However, it may not be
    feasible to capture and represent these tolerances per user as the
    user group scales.  A compromise is for the QoO framework to place
@@ -2514,14 +2120,6 @@ A.3.  Requirements from Application and Platform Developers
    specify network performance requirements approximately.  Therefore,
    it must be possible to describe both simple and complex network
    performance requirements.  The framework also needs to be flexible so
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 45]
-
-Internet-Draft                     QoO                          May 2026
-
-
    that it can be used with different kinds of traffic and that extreme
    network performance requirements which far exceed the needs of
    today's applications can also be articulated.
@@ -2568,16 +2166,6 @@ A.4.  Requirements from Network Operators and Network Solution Vendors
    their network and understand where the true bottlenecks are,
    regardless of network technology.
 
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 46]
-
-Internet-Draft                     QoO                          May 2026
-
-
 Appendix B.  Comparison To Other Network Quality Metrics
 
    Numerous network quality metrics and associated frameworks have been
@@ -2588,51 +2176,6 @@ Appendix B.  Comparison To Other Network Quality Metrics
    Each metric is evaluated against the three criteria established in
    Appendix A.1.  Table 1 summarizes the properties of each of the
    surveyed metrics.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 47]
-
-Internet-Draft                     QoO                          May 2026
-
 
     +=============+=====================+==============+==============+
     | Metric      | Can Assess How Well | Easy to      | Composable   |
@@ -2682,14 +2225,6 @@ Internet-Draft                     QoO                          May 2026
    measurements cover the properties of the end-to-end network path that
    the application uses.  "Easy to Articulate Application Requirements"
    refers to the ease with which application-specific requirements can
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 48]
-
-Internet-Draft                     QoO                          May 2026
-
-
    be expressed using the respective metric.  "Composable" indicates
    whether the metric supports spatial composition as described in
    Appendix A.4 and [RFC6049]: the ability to combine measurements from
@@ -2731,20 +2266,6 @@ B.2.  Mean Latency
    is additive, it is also invertible: knowing the end-to-end mean
    latency of a-b-c and the mean latency of one segment is sufficient to
    recover the mean latency of the other segment.
-
-
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 49]
-
-Internet-Draft                     QoO                          May 2026
-
 
 B.3.  99th Percentile of Latency
 
@@ -2791,17 +2312,6 @@ B.5.  Inter-Packet Delay Variation (IPDV)
 
    IPDV cannot be composed.
 
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 50]
-
-Internet-Draft                     QoO                          May 2026
-
-
 B.6.  Packet Delay Variation (PDV)
 
    The most common definition of PDV [RFC5481] measures the difference
@@ -2846,17 +2356,6 @@ B.9.  Quality Attenuation
    time-to-completion of a user-observable outcome can be computed if
    the Quality Attenuation of each sub-goal required to reach the
    desired outcome is known [Haeri22].
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 51]
-
-Internet-Draft                     QoO                          May 2026
-
 
    Quality Attenuation is composable via convolution of the underlying
    distributions, which allows computing the time it takes to reach
@@ -2907,13 +2406,6 @@ Appendix C.  Preliminary Insights From a Small-Scale User Testing
    approaches or application-provided QoE ratings as the mentioned
    study's design might have introduced different forms of bias.
 
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 52]
-
-Internet-Draft                     QoO                          May 2026
-
-
 Acknowledgments
 
    The authors would like to thank Karl Magnus Kalvik, Olav Nedrelid,
@@ -2957,12 +2449,3 @@ Authors' Addresses
    0349
    Norway
    Email: ike.kunze@cujo.com
-
-
-
-
-
-
-
-
-Monclair, et al.        Expires 20 November 2026               [Page 53]
