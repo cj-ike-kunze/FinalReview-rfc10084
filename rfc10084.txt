@@ -173,13 +173,13 @@ Table of Contents
 
    This document defines a minimum viable QoO framework consisting of:
 
-   *  Guidelines for conducting network performance measurements
+   *  guidelines for conducting network performance measurements
       (Section 3.1)
 
-   *  Guidelines for specifying quality-focused network performance
+   *  guidelines for specifying quality-focused network performance
       requirements (Section 3.2)
 
-   *  Calculation formulas for computing QoO scores (Section 3.3)
+   *  calculation formulas for computing QoO scores (Section 3.3)
 
    The document also discusses operational considerations (Section 4)
    and known weaknesses and open questions (Section 5).  The appendix
@@ -195,16 +195,16 @@ Table of Contents
    documents.  The following items are out of scope for this document
    and may be addressed in future work:
 
-   *  How applications define and share their network performance
+   *  how applications define and share their network performance
       requirements
 
-   *  Which format is used to publish such requirement information
+   *  which format is used to publish such requirement information
 
-   *  How operators retrieve such data from applications or services
+   *  how operators retrieve such data from applications or services
 
-   *  How the precision of the resulting QoO scores is assessed
+   *  how the precision of the resulting QoO scores is assessed
 
-   *  What levels of precision are considered acceptable
+   *  what levels of precision are considered acceptable
 
 1.2.  Terminology
 
@@ -258,7 +258,7 @@ Table of Contents
    Requirements for Optimal Performance (ROP):  The network performance
       characteristics at which an application achieves optimal
       performance.  When network performance exceeds ROP thresholds, any
-      sub-optimal user experience can be assumed not to be caused by the
+      suboptimal user experience can be assumed not to be caused by the
       part of the network path that has been measured for QoO
       calculations.
 
@@ -302,28 +302,28 @@ Table of Contents
    cumulative distribution function of the IRV captures the likelihood
    that a packet "completes" within any given time, e.g., that it is
    received at the destination when one-way latency is assessed.  The
-   IRV incorporates packet loss by treating lost packets as infinite (or
-   too late to be of use, i.e., not arriving within an
-   application-specific time threshold) latency, similar to the One-Way
-   Loss Metric for IP Performance Metrics (IPPM) [RFC7680], which
-   defines packet loss as packets that fail to arrive within a specified
-   time threshold.  The "intangible mass" of the IRV represents the
+   IRV incorporates packet loss by treating lost packets as infinite
+   latency (or too late to be of use, i.e., not arriving within an
+   application-specific time threshold), similar to the One-Way Loss
+   Metric for IP Performance Metrics (IPPM) [RFC7680], which defines
+   packet loss as packets that fail to arrive within a specified time
+   threshold.  The "intangible mass" of the IRV represents the
    probability that a packet never completes within any useful time
    (i.e., is lost or arrives too late).
 
    Quality Attenuation enables spatial composition [RFC6049] of network
-   segments as two distributions can be composed using convolution.
+   segments, as two distributions can be composed using convolution.
    Measurements from different network segments can be combined to
    derive end-to-end quality assessments, or end-to-end measurements can
    be decomposed to isolate the contribution of individual segments.
    This composability enables network operators to perform fault
-   isolation and root cause analysis by identifying which portions of a
+   isolation and root-cause analysis by identifying which portions of a
    network path contribute most to performance degradation.
 
 2.2.  QoO Design Considerations
 
    Quality Attenuation provides a mathematically rigorous foundation for
-   network quality assessment and it can capture the ability of a
+   network quality assessment, and it can capture the ability of a
    network to satisfy a variety of application needs.  However,
    interpreting its raw distributional outputs and component
    decompositions can be difficult, especially for application
@@ -349,7 +349,7 @@ Table of Contents
    objective QoS measurements while communicating network quality in
    intuitive terms, thereby creating a middle ground between QoS and QoE
    metrics and allowing end-users to understand if a network is a likely
-   source of impairment for the performance of applications.
+   source of impairment to the performance of applications.
 
    Application developers need the ability to express quality-focused
    network performance requirements for their applications across all
@@ -391,24 +391,22 @@ Table of Contents
    The QoO framework builds on the conceptual foundation of Quality
    Attenuation [TR-452.1].  Similar to Quality Attenuation, QoO
    evaluates network conditions using latency distributions and packet
-   loss probabilities under the assumption that other factors which
-   could in principle be measured but are not explicitly captured by QoO
-   will inevitably influence the observed latency and packet loss
+   loss probabilities under the assumption that other factors that
+   could, in principle, be measured but are not explicitly captured by
+   QoO will inevitably influence the observed latency and packet loss
    behavior, so that QoO indirectly accounts for their effects.  The QoO
    framework additionally includes throughput, i.e., the available
    network capacity, as applications usually have minimum throughput
    requirements below which they do not work at all.  The measured
    conditions are compared against application-specific, quality-focused
    network performance requirements.  Latency requirements are specified
-   along multiple dimensions (such as 90th or 95th latency percentiles)
+   along multiple dimensions (such as 90th or 95th latency percentiles),
    while packet loss requirements specify mean packet loss ratios.  Both
    latency and packet loss requirements are specified at two thresholds:
-
-   *  Optimal performance (ROP): Network conditions under which
-      application performance becomes optimal
-
-   *  Unacceptable performance (CPUP): Network conditions under which
-      application performance becomes unacceptable
+   - Optimal performance (ROP): Network conditions under which
+   application performance becomes optimal - Unacceptable performance
+   (CPUP): Network conditions under which application performance
+   becomes unacceptable
 
    For throughput, requirements specify only a global minimum required
    value.
@@ -443,8 +441,8 @@ Table of Contents
    equipment, or anywhere in between.  Passive methods rely on observing
    and time-stamping packets traversing the network.  Examples of this
    include TCP SYN and SYN/ACK packets (Section 2.2 of [RFC8517]) and
-   the QUIC spin bit [RFC9000][RFC9312].  Similar considerations apply
-   to packet loss measurements while throughput measurements usually
+   the QUIC spin bit [RFC9000] [RFC9312].  Similar considerations apply
+   to packet loss measurements, while throughput measurements usually
    involve active testing.
 
    In addition to measurement approaches standardized in the QED
@@ -465,10 +463,10 @@ Table of Contents
    *  DNS response latency measurements (Section 2.8 of [RFC8517],
       [RFC8912])
 
-   *  Passive TCP / QUIC handshake measurements [TCPHandshake][RFC9312]
+   *  Passive TCP / QUIC handshake measurements [TCPHandshake] [RFC9312]
 
-   *  Continuous passive TCP / QUIC measurements
-      [TCPContinuous][RFC9312]
+   *  Continuous passive TCP / QUIC measurements [TCPContinuous]
+      [RFC9312]
 
    *  Simulating or estimating real traffic [LatencyEstimation]
 
@@ -485,7 +483,7 @@ Table of Contents
 
    Instead, the chosen measurement methodology must be able to capture
    characteristics of applications to be studied with sufficient
-   resolution as different applications and application classes fail
+   resolution, as different applications and application classes fail
    under different network conditions.  For example, downloads are
    generally more tolerant of latency than real-time applications.
    Video conferences are often sensitive to high 90th percentile latency
@@ -498,13 +496,13 @@ Table of Contents
    practicality, recognizing that constraints vary across devices,
    applications, and deployment environments.
 
-   Another dimension to this is the modelling of full latency
+   Another dimension to this is the modeling of full latency
    distributions, which may be too complex to allow for easy adoption of
    the framework.  Instead, reporting latency at selected percentiles
    offers a practical compromise between accuracy and deployment
-   considerations, trading off composability, which is only possible
-   with distributions, for an easier deployment.  A commonly accepted
-   set of percentiles spanning from the 0th to the 100th in a
+   considerations; the trade-off is composability (which is only
+   possible with distributions) for an easier deployment.  A commonly
+   accepted set of percentiles spanning from the 0th to the 100th in a
    logarithmic-like progression has been suggested by others [BITAG] and
    is recommended here: [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th,
    99.9th, 100th].
@@ -520,8 +518,8 @@ Table of Contents
    but may not always allow capturing heavily loaded conditions.  Active
    measurements can target heavily loaded conditions by generating
    synthetic traffic equivalent to the application load alongside the
-   probes but capturing the actual or idle network conditions may not be
-   possible depending on the footprint of the measurement method.
+   probes, but capturing the actual or idle network conditions may not
+   be possible depending on the footprint of the measurement method.
 
    Performing active measurements or generating artificial load can
    degrade the network under test or inadvertently enable denial-of-
@@ -587,7 +585,7 @@ Table of Contents
    *  Description of the measurement duration, including:
 
       -  Timestamp of first sample (e.g., in the format used in TWAMP
-         [RFC5357][RFC8877])
+         [RFC5357] [RFC8877])
 
       -  Total duration of the sampling period (in milliseconds)
 
@@ -635,29 +633,29 @@ Table of Contents
    For latency and packet loss, these specifications define both the
    Requirements for Optimal Performance (ROP), and the Conditions at the
    Point of Unacceptable Performance (CPUP).  There is only one global
-   minimum throughput requirement as insufficient network capacity may
+   minimum throughput requirement, as insufficient network capacity may
    give unacceptable application outcomes without necessarily inducing a
    lot of latency or packet loss.
 
    Figure 1 illustrates one example requirement specification.  For
    optimal performance, the example application requires that 99% of
-   packets need to arrive within 100ms and 99.9% within 200ms while
+   packets need to arrive within 100 ms and 99.9% within 200 ms while
    tolerating at most 0.1% packet loss (ROP).  The perceived service
-   becomes unacceptable if 99% of packets have not arrived within 200ms,
-   or 99.9% within 300ms, or if there is more than 2% packet loss
-   (CPUP).  The underlying minimum throughput requirement is 4Mbps.
+   becomes unacceptable if 99% of packets have not arrived within 200
+   ms, or 99.9% within 300ms, or if there is more than 2% packet loss
+   (CPUP).  The underlying minimum throughput requirement is 4 Mbps.
 
                                       CPUP              ROP
                                         v                v
                      <-- Unacceptable --|<- Acceptable ->|-- Optimal -->
                                         |                |
- Latency (99th pct)                   200ms            100ms
+ Latency (99th pct)                   200 ms           100 ms
                                         |                |
- Latency (99.9th pct)                 300ms            200ms
+ Latency (99.9th pct)                 300 ms           200 ms
                                         |                |
  Packet Loss                            2%              0.1%
                                         |
- Throughput                           4Mbps
+ Throughput                           4 Mbps
 
     Figure 1: Example Network Performance Requirement Specification
 
@@ -673,10 +671,10 @@ Table of Contents
    percentiles and it does not define standardized network performance
    requirement specifications for specific applications or application
    classes.  Packet loss and throughput requirements can be arbitrary
-   non-negative values while latency requirements are specified as sets
+   non-negative values, while latency requirements are specified as sets
    of non-negative percentile-latency tuples.  The set of included
-   percentiles can be minimal (e.g., 100% within 200ms) or extended as
-   needed and different percentiles may be used to characterize
+   percentiles can be minimal (e.g., 100% within 200 ms) or extended as
+   needed, and different percentiles may be used to characterize
    different applications.
 
    For ease of operation, this document does mandate that latency
@@ -688,13 +686,14 @@ Table of Contents
    Section 3.1.1 is used, the requirement specification must use
    percentiles that are included in the reported measurements, i.e., one
    or more of the [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th,
-   99.9th, 100th] percentiles if the [BITAG] recommendation is followed.
+   99.9th, 100th] percentiles if the recommendation from [BITAG] is
+   followed.
 
-   For simplicity, the document further mandates that latency
+   For simplicity, this document further mandates that latency
    percentiles used in the ROP must also be used in the CPUP, and vice
-   versa.  For example, if the CPUP uses the 99.9th percentile then the
+   versa.  For example, if the CPUP uses the 99.9th percentile, then the
    ROP must also include the 99.9th percentile, and if the ROP uses the
-   99th percentile then the CPUP must also include the 99th percentile.
+   99th percentile, then the CPUP must also include the 99th percentile.
 
    Finally, the network performance requirement specification must
    specify if the requirements are one-way or two-way.  If the
@@ -725,9 +724,9 @@ Table of Contents
    on test design, measurement procedures, and statistical analysis that
    can help ensure consistent and reproducible threshold definitions.
 
-   To illustrate the large design-space for such testing, Section 4.9
+   To illustrate the large design space for such testing, Section 4.9
    sketches an arguably subjective approach to identifying thresholds
-   for ROP and CPUP specifications, which should not be used in
+   for ROP and CPUP specifications; this approach should not be used in
    deployments due to its subjectiveness.  Future documents may define
    new methods for deriving appropriate network performance requirements
    for QoO and could also recommend a fixed set of latency percentiles
@@ -784,7 +783,7 @@ Table of Contents
                                      |
                       min. throughput^
 
-                 Figure 2: The three dimensions of QoO.
+                 Figure 2: The Three Dimensions of QoO
 
 3.3.2.  Latency Component
 
@@ -849,24 +848,24 @@ Table of Contents
 
    Example requirements:
 
-   *  Minimum throughput: 4Mbps
+   *  Minimum throughput: 4 Mbps
 
-   *  ROP: {99%, 200ms}, {99.9%, 300ms}, 1% packet loss
+   *  ROP: {99%, 200 ms}, {99.9%, 300 ms}, 1% packet loss
 
-   *  CPUP: {99%, 500ms}, {99.9%, 600ms}, 5% packet loss
+   *  CPUP: {99%, 500 ms}, {99.9%, 600 ms}, 5% packet loss
 
    Example measured conditions:
 
-   *  Measured latency: 99% = 350ms, 99.9% = 375ms
+   *  Measured latency: 99% = 350 ms, 99.9% = 375 ms
 
    *  Measured mean packet loss ratio: 2%
 
-   *  Measured throughput: 28Mbps
+   *  Measured throughput: 28 Mbps
 
    Latency component:
 
-   m1 = 1 - ((350ms - 200ms) / (500ms - 200ms)) = 1 - 0.5 = 0.5
-   m2 = 1 - ((375ms - 300ms) / (600ms - 300ms)) = 1 - 0.25 = 0.75
+   m1 = 1 - ((350 ms - 200 ms) / (500 ms - 200 ms)) = 1 - 0.5 = 0.5
+   m2 = 1 - ((37 5ms - 30 0ms) / (600 ms - 300 ms)) = 1 - 0.25 = 0.75
    metrics = [clamp(0, m1, 1), clamp(0, m2, 1)] = [0.5, 0.75]
    QoO_latency = find_min(metrics) * 100 = 50
 
@@ -877,12 +876,13 @@ Table of Contents
 
    Throughput component:
 
-   28Mbps > 4Mbps
+   28 Mbps > 4 Mbps
    -> QoO_throughput = 100
 
    Overall QoO score:
 
-QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
+   QoO = min(QoO_latency, QoO_loss, QoO_throughput)
+       = min(50, 75, 100) = 50
 
    In this example, the network scores 50% on the QoO assessment range
    between unacceptable and optimal for the given application when using
@@ -1876,9 +1876,10 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
               Metric Measurement", RFC 9946, DOI 10.17487/RFC9946, April
               2026, <https://www.rfc-editor.org/rfc/rfc9946>.
 
-   [RPM]      "Responsiveness under Working Conditions", July 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
-              responsiveness>.
+   [RPM]      "Responsiveness under Working Conditions", Work in
+              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
+              01, July 2022, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ippm-responsiveness>.
 
    [RRUL]     Täht, D., "Real-time response under load test
               specification", 6 November 2012,
