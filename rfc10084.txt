@@ -928,7 +928,7 @@ Table of Contents
 
    Quality Attenuation is complementary to QoO in that it also aims to
    provide QoE-oriented QoS assessments.  Both draw on the same latency
-   distributions and packet loss probabilities, but differ in how those
+   distributions and packet loss probabilities but differ in how those
    measurements are transformed: Quality Attenuation preserves the full
    distributional detail needed for convolution and per-hop
    decomposition, while QoO trades that detail for an application-
@@ -936,7 +936,7 @@ Table of Contents
    the same underlying data, switching between Quality Attenuation and
    QoO requires no additional measurements, so operators can use QoO to
    produce a score that is immediately meaningful to all stakeholders
-   and Quality Attenuation if they need more detailed root-cause
+   and use Quality Attenuation if they need more detailed root-cause
    analysis, capacity planning, or segment comparisons.
 
 4.2.  Composability, Flexibility, and Use Cases
@@ -946,19 +946,19 @@ Table of Contents
    probabilities (see Appendix B.10), which allows measurements from
    different network segments to be combined or decomposed to isolate
    per-segment contributions.  The composability also enables flexible
-   deployment scopes as QoO scores may be computed for the complete end-
-   to-end path (e.g., from application clients to servers), or focused
-   on specific network segments, such as the customer-facing access
-   network, intermediate transit networks, or server-side
+   deployment scopes, as QoO scores may be computed for the complete
+   end-to-end path (e.g., from application clients to servers), or
+   focused on specific network segments, such as the customer-facing
+   access network, intermediate transit networks, or server-side
    infrastructure.  The network performance requirement specifications
    provide another dimension of flexibility as specifications can have
-   different scopes, such as per-application, per application-type, or
-   per-Service Level Agreement (SLA).
+   different scopes, such as per application, per application type, or
+   per Service Level Agreement (SLA).
 
    A holistic use of QoO with a fine-grained attribution of per-segment
    contributions requires sharing the measured distributions and
    probabilities for the involved segments among all relevant
-   stakeholders, which can be challenging across different operators or
+   stakeholders; this can be challenging across different operators or
    networks.  However, even without sharing raw data across all networks
    of an end-to-end path, QoO remains valuable for analyzing and
    troubleshooting individual network segments.  Operators can use QoO
@@ -977,14 +977,14 @@ Table of Contents
    important to ensure that:
 
    *  Measurements are taken using the same connectivity service level
-      that will be used by the application
+      that will be used by the application.
 
    *  The measurement methodology accounts for any traffic
       prioritization, differentiated services, or QoS mechanisms that
-      may affect application performance
+      may affect application performance.
 
    *  Network configurations and policies that will apply to application
-      traffic are reflected in the measurement conditions
+      traffic are reflected in the measurement conditions.
 
    Failing to align measurements with the actual service delivery may
    result in QoO scores that do not accurately reflect the application's
@@ -1021,8 +1021,8 @@ Table of Contents
    load conditions they were obtained.  Implementers also need to decide
    whether measurement traffic is steered consistently (e.g., by tuning
    flow tuples to follow specific ECMP paths) or deliberately varied to
-   sample full path diversity, and document which approach was used in
-   the measurement metadata.
+   sample full path diversity, and to document which approach was used
+   in the measurement metadata.
 
    These challenges are even more pronounced for mobile cellular
    networks, where path and capacity can change by an order of magnitude
@@ -1084,8 +1084,8 @@ Table of Contents
    levels.  The framework can then assess how well the application will
    achieve each quality level, providing a more nuanced view of
    application performance than a simple binary pass/fail metric.
-   Another, less complex approach at the cost of reduced fidelity in the
-   QoO score, is to set the threshold for optimal performance at the
+   Another, less complex approach, at the cost of reduced fidelity in
+   the QoO score, is to set the threshold for optimal performance at the
    highest rendition available for the video stream, and the threshold
    for unacceptability where the lowest rendition cannot be delivered
    without resulting in stalling events.
@@ -1139,9 +1139,9 @@ Table of Contents
    examined the metric's real-world applicability under varying
    conditions and made the following conclusions:
 
-   1.  Sampling Frequency: Slow sampling rates (e.g., <1Hz) risk missing
-       rare, short-lived latency spikes, resulting in overly optimistic
-       QoO scores.
+   1.  Sampling Frequency: Slow sampling rates (e.g., <1 Hz) risk
+       missing rare, short-lived latency spikes, resulting in overly
+       optimistic QoO scores.
 
    2.  Measurement Noise: Measurement errors on the same scale as the
        thresholds (ROP, CPUP) can distort high-percentile latencies and
@@ -1205,13 +1205,13 @@ Table of Contents
    application over a controlled network segment with adjustable quality
    and then vary the network conditions while continuously observing the
    resulting application-level performance.  The latter can be assessed
-   manually by the entity performing the testing or using automated
-   methods, such as recording video stall duration within a video
+   in a manual way by the entity performing the testing or in an
+   automated way, such as recording video stall duration within a video
    player.  Additionally, application developers could set thresholds
-   for acceptable fps, animation fluidity, i/o latency (voice, video,
-   actions), or other metrics that directly affect the user experience
-   and measure these user-facing metrics during tests to correlate the
-   metrics with the network conditions.
+   for acceptable frames per second (fps), animation fluidity, I/O
+   latency (voice, video, actions), or other metrics that directly
+   affect the user experience and measure these user-facing metrics
+   during tests to correlate the metrics with the network conditions.
 
    Using this scenario, one can first establish a baseline under
    excellent network conditions.  Network conditions can then be
@@ -1219,21 +1219,21 @@ Table of Contents
    network capacity until the application no longer performs optimally.
    The corresponding network conditions identify the minimal
    requirements for optimal performance (ROP).  Continuing to worsen the
-   network conditions until the application fails completely eventually
-   yields the network conditions at the point of unacceptable
+   network conditions until the application fails completely will
+   eventually yield the network conditions at the point of unacceptable
    performance (CPUP).
 
    Note that different users may have different tolerance levels for
    application degradation.  Hence, tests conducted by a single entity
    likely result in highly subjective thresholds.  The thresholds
    established should represent acceptable performance for the target
-   user base, which may require user studies or market research to
-   determine appropriate values.
+   user base; user studies or market research may be needed to determine
+   appropriate values.
 
    As stated at the beginning of this section, this document does not
    define a standardized approach for creating a quality-focused network
-   performance requirement specification and directly using the approach
-   described above is discouraged.
+   performance requirement specification, and directly using the
+   approach described above is discouraged.
 
 5.  Known Weaknesses and Open Questions
 
@@ -1255,30 +1255,29 @@ Table of Contents
    Volatile networks pose a challenge for network quality prediction,
    with the level of assurance of the prediction likely to decrease as
    session duration increases [QoSPrediction].  Where the volatile
-   network is a segment forming part of an Internet path then it will
+   network is a segment forming part of an Internet path, it will
    typically form the bottleneck of that path.
 
    Radio access networks are prone to volatility: the available capacity
    for a given user device can change by an order of magnitude within
    seconds due to physical radio factors.  This is especially the case
-   in mobile cellular networks ([CellularPredictability]) due to the
-   increased transmission distance and the difficulty of adding new
-   access points or repeaters (in comparison to e.g. Wi-Fi).  Other
-   factors in cellular volatility include whether the user device is at
-   the edge of a radio cell or undergoing cell handover, the radio
-   interference and fading from the local environment, and any switch
-   between radio bearers with differing capacity and transmission-time
-   intervals (e.g., 3GPP 4G and 5G).  This volatility applies on both
-   dowlink (cell tower to device) and uplink (device to cell tower),
-   albeit uplink incurs an additional factor of the reduced transmit
-   power available to a user's battery-powered device.
+   in mobile cellular networks (as detailed in[CellularPredictability])
+   due to the increased transmission distance and the difficulty of
+   adding new access points or repeaters (in comparison to, e.g., Wi-
+   Fi).  Other factors in cellular volatility include whether the user
+   device is at the edge of a radio cell or undergoing cell handover,
+   the radio interference and fading from the local environment, and any
+   switch between radio bearers with differing capacity and
+   transmission-time intervals (e.g., 3GPP 4G and 5G).  This volatility
+   applies on both downlink (cell tower to device) and uplink (device to
+   cell tower), albeit uplink incurs an additional factor of the reduced
+   transmit power available to a user's battery-powered device.
 
    The above suggests a requirement for measuring network quality to and
    from an individual device connected via the radio access network, as
    that can account for the factors described above.  How that facility
    is provisioned onto individual devices and how device-hosted
-   applications can trigger a network quality query, is an open
-   question.
+   applications can trigger a network quality query are open questions.
 
 5.2.  Missing Temporal Information in Distributions
 
@@ -1297,7 +1296,7 @@ Table of Contents
    Additionally, it is not feasible to capture latency for every packet
    transmitted.  Probing and sampling can be performed, but some aspects
    will always remain unknown.  This introduces an element of
-   uncertainty and perfect predictions cannot be achieved; rather than
+   uncertainty, and perfect predictions cannot be achieved; rather than
    disregarding this reality, it is more practical to acknowledge it.
    Therefore, discussing the assessment of outcomes provides a more
    accurate and meaningful approach.
@@ -1310,10 +1309,10 @@ Table of Contents
    the QoO framework adds an error in estimating the perceived
    performance of interactive applications.
 
-   One can conjure up scenarios where 50ms latency is actually worse
-   than 51ms latency as developers may have chosen 50ms as the threshold
-   for changing quality, and the threshold may be imperfect.  Taking
-   these scenarios into account would add another magnitude of
+   One can conjure up scenarios where 50 ms latency is actually worse
+   than 51 ms latency as developers may have chosen 50 ms as the
+   threshold for changing quality, and the threshold may be imperfect.
+   Taking these scenarios into account would add another magnitude of
    complexity to determining network performance requirements and
    finding a distance measure (between requirement and actual measured
    capability).
@@ -1323,7 +1322,7 @@ Table of Contents
    Choosing a binary throughput threshold is to reduce complexity, but
    it must be acknowledged that many applications are not that simple.
    Network requirements can be set up per quality level (resolution,
-   frames per-second, etc.) for the application if necessary.
+   frames per second, etc.) for the application if necessary.
 
 5.6.  Arbitrary Selection of Percentiles
 
@@ -1333,13 +1332,12 @@ Table of Contents
    inherent significance.  According to [BITAG], the 90th, 98th, and
    99th percentiles are particularly important for certain applications.
    Generally, higher percentiles provide more insight for interactive
-   applications, but only up to a certain threshold beyond which
-   applications may treat excessive delays as packet loss and adapt
-   accordingly.  The choice between percentiles such as the 95th, 96th,
-   96.5th, or 97th is not universally prescribed and may vary between
-   application types.  Therefore, percentiles must be selected
-   arbitrarily, based on the best available knowledge and the intended
-   use case.
+   applications, but only up to a point: applications may treat packets
+   delayed beyond a certain threshold as lost and adapt accordingly.
+   The choice between percentiles such as the 95th, 96th, 96.5th, or
+   97th is not universally prescribed and may vary between application
+   types.  Therefore, percentiles must be selected arbitrarily, based on
+   the best available knowledge and the intended use case.
 
 6.  Security Considerations
 
