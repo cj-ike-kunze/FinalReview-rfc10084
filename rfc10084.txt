@@ -22,28 +22,7 @@ Abstract
    method for defining and evaluating application-specific, quality-
    focused network performance requirements to enable insights for
    network troubleshooting and optimization, and simple Quality of
-   Service scores for end-users. <--[rfced] How may this sentence in the
-   abstract be rephrased for clarity?  Specifically, we suggest
-   rephrasing "to enable insights [...] and scores" to "to provide X as
-   well as Y" or "to enable X and to provide Y".
-
-   Original Conceptually based on the Quality Attenuation metric, QoO
-   provides a method for defining and evaluating application-specific,
-   quality- focused network performance requirements to enable insights
-   for network troubleshooting and optimization, and simple Quality of
    Service scores for end-users.
-
-   Option A Conceptually based on the Quality Attenuation metric, QoO
-   provides a method for defining and evaluating application-specific,
-   quality- focused network performance requirements to provide insights
-   for network troubleshooting and optimization as well as simple
-   Quality of Service scores for end users.
-
-   Option B Conceptually based on the Quality Attenuation metric, QoO
-   provides a method for defining and evaluating application-specific,
-   quality- focused network performance requirements to enable insights
-   for network troubleshooting and optimization and to provide simple
-   Quality of Service scores for end-users.  -->
 
 Status of This Memo
 
@@ -420,18 +399,12 @@ Table of Contents
    along multiple dimensions (such as 90th or 95th latency percentiles),
    while packet loss requirements specify mean packet loss ratios.  Both
    latency and packet loss requirements are specified at two thresholds:
-   - Optimal performance (ROP): Network conditions under which
-   application performance becomes optimal - Unacceptable performance
-   (CPUP): Network conditions under which application performance
-   becomes unacceptable <!--[rfced] Will the shortened names be clear to
-   the reader, or would you like to update to match the expansions of
-   ROP and CPUP?
 
-   Original: * Optimal performance (ROP): Network conditions under which
-   application performance becomes optimal
+   *  Optimal performance (ROP): Network conditions under which
+      application performance becomes optimal
 
    *  Unacceptable performance (CPUP): Network conditions under which
-      application performance becomes unacceptable -->
+      application performance becomes unacceptable
 
    For throughput, requirements specify only a global minimum required
    value.
@@ -1771,9 +1744,10 @@ Table of Contents
               DOI 10.17487/RFC10069, November 2026,
               <https://www.rfc-editor.org/rfc/rfc10069>.
 
-   [RPM]      "Responsiveness under Working Conditions", July 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
-              responsiveness>.
+   [RPM]      "Responsiveness under Working Conditions", Work in
+              Progress, Internet-Draft, draft-ietf-ippm-responsiveness,
+              July 2022, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-ippm-responsiveness>.
 
    [RRUL]     Täht, D., "Real-time response under load test
               specification", 6 November 2012,
@@ -2124,13 +2098,7 @@ Appendix B.  Comparison to Other Network Quality Metrics
    Appendix A.4 and [RFC6049]: the ability to combine measurements from
    individual path segments to derive end-to-end properties, or to
    decompose end-to-end measurements to isolate per-segment
-   contributions. <!--[rfced] May a sentence be added below Table 1 to
-   expand IPDV and PDV?  They are expanded later in the titles of B.5
-   and B.6.
-
-   Perhaps: In Table 1, "IPDV" is Inter-Packet Delay Variation
-   (Appendix B.5), and "PDV" is Packet Delay Variation (Appendix B.6).
-   -->
+   contributions.
 
 B.1.  Throughput
 
@@ -2234,33 +2202,15 @@ B.7.  Trimmed Mean of Latency
 
 B.8.  Round-trips Per Minute
 
-   <--[rfced] To make the list parallel, may this sentence be updated as
-   follows?  Also, is it accurate to say that RPM "is a metric and a
-   test procedure"?  Perhaps it's more accurately the result of a test
-   procedure, i.e., the Responsiveness Test in [RPM]?
-
-   Original: Round-trips per minute [RPM] is a metric and test procedure
+   Round-trips per minute [RPM] is a metric and test procedure
    specifically designed to measure delays as experienced by
    application-layer protocol procedures, such as HTTP GET, establishing
-   a TLS connection, and DNS lookups.
-
-   Option A: Round-trips per minute [RPM] is a metric or a test
-   procedure to measure delays as experienced by application-layer
-   protocol procedures, such as HTTP GET requests, TLS connection
-   establishment, and DNS lookups.
-
-   Option B: Round-trips per minute [RPM] is a metric (which is the
-   result of a test procedure) to measure delays as experienced by
-   application-layer protocol procedures, such as HTTP GET requests, TLS
-   connection establishment, and DNS lookups.  --> Round-trips per
-   minute [RPM] is a metric and test procedure specifically designed to
-   measure delays as experienced by application-layer protocol
-   procedures, such as HTTP GET, establishing a TLS connection, and DNS
-   lookups.  Hence, it measures something very close to the user-
-   perceived application performance of HTTP-based applications.  RPM
-   loads the network before conducting latency measurements and is,
-   therefore, a measure of loaded latency (also known as working
-   latency) and well-suited to detecting bufferbloat [Bufferbloat].
+   a TLS connection, and DNS lookups.  Hence, it measures something very
+   close to the user-perceived application performance of HTTP-based
+   applications.  RPM loads the network before conducting latency
+   measurements and is, therefore, a measure of loaded latency (also
+   known as working latency) and well-suited to detecting bufferbloat
+   [Bufferbloat].
 
    RPM is not composable.
 
@@ -2341,29 +2291,7 @@ Acknowledgments
    Kyzivat, Jason Livingood, Greg Mirsky, Tal Mizrahi, Luis Miguel
    Contreras Murillo, Jörg Ott, Tommy Pauly, Alexander Raake, Werner
    Robitza, Kevin Smith, Martin Thomson, and Michael Welzl for their
-   feedback and input to this document throughout the IETF process. <!--
-   [rfced] Please review the "Inclusive Language" portion of the online
-   Style Guide https://www.rfc-editor.org/authors/rfc-style-
-   guide/#inclusive-language (https://www.rfc-editor.org/authors/rfc-
-   style-guide/#inclusive-language) and let us know if any changes are
-   needed.  Updates of this nature typically result in more precise
-   language, which is helpful for readers.
-
-   Note that our script did not flag any words in particular, but this
-   should still be reviewed as a best practice.
-
-   In addition, please consider whether "traditional" should be updated
-   for clarity.
-   While the NIST website
-   https://web.archive.org/web/20250214092458/https://www.nist.gov/nist-
-   research-library/nist-technical-series-publications-author-
-   instructions#table1
-   (https://web.archive.org/web/20250214092458/https://www.nist.gov/
-   nist-research-library/nist-technical-series-publications-author-
-   instructions#table1) indicates that this term is potentially biased,
-   it is also ambiguous.
-   "Traditional" is a subjective term, as it is not the same for
-   everyone. -->
+   feedback and input to this document throughout the IETF process.
 
 Authors' Addresses
 
