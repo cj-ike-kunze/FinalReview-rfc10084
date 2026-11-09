@@ -103,19 +103,16 @@ Table of Contents
      6.4.  Trust in Application Requirements
    7.  Privacy Considerations
    8.  IANA Considerations
-   9.  Implementation status
-     9.1.  qoo-c
-     9.2.  goresponsiveness
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Appendix A.  QoO Framework Design Considerations
      A.1.  General Requirements
      A.2.  Requirements from End-Users
      A.3.  Requirements from Application and Platform Developers
      A.4.  Requirements from Network Operators and Network Solution
            Vendors
-   Appendix B.  Comparison To Other Network Quality Metrics
+   Appendix B.  Comparison to Other Network Quality Metrics
      B.1.  Throughput
      B.2.  Mean Latency
      B.3.  99th Percentile of Latency
@@ -126,7 +123,7 @@ Table of Contents
      B.8.  Round-trips Per Minute
      B.9.  Quality Attenuation
      B.10. Quality of Outcome
-   Appendix C.  Preliminary Insights From a Small-Scale User Testing
+   Appendix C.  Preliminary Insights from a Small-Scale User Testing
            Campaign
    Acknowledgments
    Authors' Addresses
@@ -1364,7 +1361,7 @@ Table of Contents
       collecting or analyzing QoO data.
 
    *  Measurement data has to be transmitted over secure channels (e.g.,
-      (D)TLS) to ensure confidentiality and integrity.
+      TLS or DTLS) to ensure confidentiality and integrity.
 
    *  Digital signatures may be used to verify the authenticity of
       measurement reports.
@@ -1379,12 +1376,12 @@ Table of Contents
 
    Mitigations include:
 
-   *  Independent verification of application requirements and
-      measurement methodologies.
+   *  independent verification of application requirements and
+      measurement methodologies,
 
-   *  Use of randomized testing procedures.
+   *  use of randomized testing procedures, and
 
-   *  Transparency in how QoO scores are derived and what assumptions
+   *  transparency in how QoO scores are derived and what assumptions
       are made.
 
 6.3.  Denial-of-Service (DoS) Risks
@@ -1409,8 +1406,8 @@ Table of Contents
 6.4.  Trust in Application Requirements
 
    QoO depends on application developers to define ROP and CPUP.  If
-   these are defined inaccurately-either unintentionally or maliciously-
-   the resulting QoO scores may be misleading.
+   these are defined inaccurately -- either unintentionally or
+   maliciously -- the resulting QoO scores may be misleading.
 
    To address such risks, the following recommendations are made:
 
@@ -1430,8 +1427,7 @@ Table of Contents
 
    To protect user privacy:
 
-   *  Data collection should be subject to user consent prior to
-      collecting data.
+   *  User consent should be required prior to data collection.
 
    *  Data collection should follow the principle of data minimization,
       only collecting what is strictly necessary.
@@ -1448,120 +1444,9 @@ Table of Contents
 
    This document has no IANA actions.
 
-9.  Implementation status
+9.  References
 
-   Note to RFC Editor: This section must be removed before publication
-   of the document.
-
-   This section records the status of known implementations of the
-   protocol defined by this specification at the time of posting of this
-   Internet-Draft, and is based on a proposal described in [RFC7942].
-   The description of implementations in this section is intended to
-   assist the IETF in its decision processes in progressing drafts to
-   RFCs.  Please note that the listing of any individual implementation
-   here does not imply endorsement by the IETF.  Furthermore, no effort
-   has been spent to verify the information presented here that was
-   supplied by IETF contributors.  This is not intended as, and must not
-   be construed to be, a catalog of available implementations or their
-   features.  Readers are advised to note that other implementations may
-   exist.
-
-   According to [RFC7942], "this will allow reviewers and working groups
-   to assign due consideration to documents that have the benefit of
-   running code, which may serve as evidence of valuable experimentation
-   and feedback that have made the implemented protocols more mature.
-   It is up to the individual working groups to use this information as
-   they see fit".
-
-9.1.  qoo-c
-
-   *  Link to the open-source repository:
-
-      https://github.com/getCUJO/qoo-c
-
-   *  The organization responsible for the implementation:
-
-      CUJO AI
-
-   *  A brief general description:
-
-      A C library for calculating Quality of Outcome
-
-   *  The implementation's level of maturity:
-
-      A complete implementation of the specification described in this
-      document
-
-   *  Coverage:
-
-      The library is tested with unit tests
-
-   *  Licensing:
-
-      MIT
-
-   *  Implementation experience:
-
-      Tested by the author.  Needs additional testing by third parties.
-
-   *  Contact information:
-
-      Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
-
-   *  The date when information about this particular implementation was
-      last updated:
-
-      27th of May 2025
-
-9.2.  goresponsiveness
-
-   *  Link to the open-source repository:
-
-      https://github.com/network-quality/goresponsiveness
-
-      The specific pull-request: https://github.com/network-
-      quality/goresponsiveness/pull/56
-
-   *  The organization responsible for the implementation:
-
-      University of Cincinatti for goresponsiveness as a whole, Domos
-      for the QoO part.
-
-   *  A brief general description:
-
-      A network quality test written in Go.  Capable of measuring RPM
-      and QoO.
-
-   *  The implementation's level of maturity:
-
-      Under active development; partial QoO support integrated.
-
-   *  Coverage:
-
-      The QoO part is tested with unit tests
-
-   *  Licensing:
-
-      GPL 2.0
-
-   *  Implementation experience:
-
-      Needs testing by third parties
-
-   *  Contact information:
-
-      Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
-
-      William Hawkins III: hawkinwh@ucmail.uc.edu
-
-   *  The date when information about this particular implementation was
-      last updated:
-
-      10th of January 2024
-
-10.  References
-
-10.1.  Normative References
+9.1.  Normative References
 
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
@@ -1577,7 +1462,7 @@ Table of Contents
               Revision 1, September 2020,
               <https://www.broadband-forum.org/pdfs/tr-452.1-1-0-0.pdf>.
 
-10.2.  Informative References
+9.2.  Informative References
 
    [BITAG]    BITAG, "Latency Explained", October 2022,
               <https://www.bitag.org/documents/
@@ -1787,11 +1672,6 @@ Table of Contents
               Hybrid Types In-Between)", RFC 7799, DOI 10.17487/RFC7799,
               May 2016, <https://www.rfc-editor.org/rfc/rfc7799>.
 
-   [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
-              Code: The Implementation Status Section", BCP 205,
-              RFC 7942, DOI 10.17487/RFC7942, July 2016,
-              <https://www.rfc-editor.org/rfc/rfc7942>.
-
    [RFC8033]  Pan, R., Natarajan, P., Baker, F., and G. White,
               "Proportional Integral Controller Enhanced (PIE): A
               Lightweight Control Scheme to Address the Bufferbloat
@@ -1927,9 +1807,9 @@ Appendix A.  QoO Framework Design Considerations
    address the needs of one or two of these stakeholders, but there is
    none that bridges the needs of all three.  Examples include
    throughput metrics that operators use to prove regulatory compliance
-   but with little relevance to application performance, or subjective
-   QoE metrics that are understandable to users but difficult for
-   operators to collect at meaningful scale.
+   but that have little relevance to application performance, or
+   subjective QoE metrics that are understandable to users but difficult
+   for operators to collect at meaningful scale.
 
    A key motivation for the QoO framework is to bridge the gap between
    the technical aspects of network performance and the practical needs
@@ -1951,7 +1831,7 @@ Appendix A.  QoO Framework Design Considerations
    been conditioned to think of as the only dimension of network
    quality.
 
-   Real Time Response under load tests [RRUL] and Responsiveness tests
+   Real-time response under load tests [RRUL] and responsiveness tests
    [RPM] make significant strides toward creating a network quality
    metric that is intended to be closer to application outcomes than
    available network capacity alone.  [RPM], in particular, is
@@ -1977,7 +1857,7 @@ Appendix A.  QoO Framework Design Considerations
    network with sufficient characteristics" [RFC9318].  Therefore, one
    critical requirement for a meaningful framework is its ability to
    answer the following question: "Will networking conditions prevent an
-   application from working as intended?".
+   application from working as intended?"
 
    Answering this question requires several considerations.  First, the
    Internet is inherently stochastic from the perspective of any given
@@ -1996,7 +1876,7 @@ A.1.  General Requirements
    quality framework and metric that is useful for end-users,
    application developers, and network operators/vendors alike.
    Specifically, this section outlines the three main general
-   requirements for such a framework while the sections therafter
+   requirements for such a framework, while the sections therafter
    describe requirements from the perspective of each of the target
    groups: end-users (Appendix A.2), application developers
    (Appendix A.3), and network operators (Appendix A.4).
@@ -2028,23 +1908,23 @@ A.1.  General Requirements
    quality score that can be used to better estimate application
    performance.
 
-   The framework must also support spatial composition
-   [RFC6049][RFC6390] to enable operators to take actions when
-   measurements show that applications fail too often.  In particular,
-   spatial composition allows results to be divided into sub-results,
-   each measuring the performance of a required sub-milestone that must
-   be reached in time for the application to perform adequately.
+   The framework must also support spatial composition [RFC6049]
+   [RFC6390] to enable operators to take actions when measurements show
+   that applications fail too often.  In particular, spatial composition
+   allows results to be divided into sub-results, each measuring the
+   performance of a required sub-milestone that must be reached in time
+   for the application to perform adequately.
 
-   To summarize, the QoO framework and the corresponding QoO score
-   should have the following properties in order to be meaningful:
+   To summarize, in order to be meaningful, the QoO framework and the
+   corresponding QoO score should:
 
-   1.  Capture a set of network performance metrics which provably
+   1.  capture a set of network performance metrics that provably
        correlate to the application performance of a set of different
        applications as perceived by users.
 
-   2.  Compare meaningfully to different application requirements.
+   2.  compare meaningfully to different application requirements.
 
-   3.  Be composable so operators can isolate and quantify the
+   3.  be composable so operators can isolate and quantify the
        contributions of different sub-outcomes and sub-paths of the
        network.
 
@@ -2056,7 +1936,7 @@ A.2.  Requirements from End-Users
 
    The QoO framework should facilitate a metric that is based on
    objective QoS measurements (such as throughput [RFC6349], packet loss
-   [RFC6673][RFC7680], delays [RFC2681][RFC7679], and (one-way) delay
+   [RFC6673] [RFC7680], delays [RFC2681] [RFC7679], and (one-way) delay
    variations [RFC3393]), correlated to application performance, and
    relatively understandable for end-users, similar to QoE metrics, such
    as MOS [P.800.1].
@@ -2088,24 +1968,23 @@ A.2.  Requirements from End-Users
    examples where 'acceptable levels' have been derived by application
    developers include:
 
-   *  Remote music collaboration: <20ms one-way latency [JamKazam]
+   *  Remote music collaboration: <20 ms one-way latency [JamKazam]
 
-   *  Cloud gaming: >15Mbps downlink throughput and 80ms round-trip time
-      (RTT) [XboxNetReqs] (specific requirements vary by game and
+   *  Cloud gaming: >15 Mbps downlink throughput and 80 ms round-trip
+      time (RTT) [XboxNetReqs] (Specific requirements vary by game and
       platform; see [CSGO] for an example study on the impact of latency
-      on Counter Strike: Global Offensive)
+      on Counter Strike: Global Offensive.)
 
-   *  Virtual reality (VR): <20ms RTT from head motion to rendered
-      update in VR ([RFC9817]; see [G.1051] for latency measurement and
-      interactivity scoring)
+   *  Virtual reality (VR): <20 ms RTT from head motion to rendered
+      update in VR (See [RFC9817]; see [G.1051] for latency measurement
+      and interactivity scoring.)
 
    These numbers only serve as examples and their exact value depends on
    the specific application and the test methodology used to derive
    them, such that they are not to be interpreted as universally
-   applicable (see also Section 3.2.2 and Section 4.9).  Instead,
-   additional standardization efforts are needed to derive more
-   universally applicable thresholds for different classes of
-   applications.
+   applicable (see also Sections 3.2.2 and 4.9).  Instead, additional
+   standardization efforts are needed to derive more universally
+   applicable thresholds for different classes of applications.
 
 A.3.  Requirements from Application and Platform Developers
 
@@ -2115,7 +1994,7 @@ A.3.  Requirements from Application and Platform Developers
    relevant dimensions of network quality so that applications sensitive
    to different network quality dimensions can all evaluate the network
    accurately.  Not all developers have network expertise, so to make it
-   easy for developers to use the framework, developers must be able to
+   easy for developers to use the framework, they must be able to
    specify network performance requirements approximately.  Therefore,
    it must be possible to describe both simple and complex network
    performance requirements.  The framework also needs to be flexible so
@@ -2158,14 +2037,14 @@ A.4.  Requirements from Network Operators and Network Solution Vendors
    support this kind of analysis to be maximally useful for operators.
 
    The framework must be applicable in both lab testing and monitoring
-   of production networks.  It must be useful on different time scales,
+   of production networks.  It must be useful on different timescales,
    and it cannot have a dependency on network technology or OSI layers.
 
    If these requirements are met, network operators can monitor and test
    their network and understand where the true bottlenecks are,
    regardless of network technology.
 
-Appendix B.  Comparison To Other Network Quality Metrics
+Appendix B.  Comparison to Other Network Quality Metrics
 
    Numerous network quality metrics and associated frameworks have been
    proposed, adopted, and, at times, misapplied over the years.  The
@@ -2233,7 +2112,7 @@ Appendix B.  Comparison To Other Network Quality Metrics
 
 B.1.  Throughput
 
-   Throughput relates to user-observable application outcomes as
+   Throughput relates to user-observable application outcomes, as
    acceptable performance is impossible when throughput falls below an
    application's minimum requirement.  Above that minimum threshold, the
    relationship weakens and additional capacity above a certain
@@ -2271,14 +2150,14 @@ B.3.  99th Percentile of Latency
    The 99th percentile of latency relates to user-observable application
    outcomes because it captures some information about how bad the tail
    latency is.  If an application can handle 1% of packets being too
-   late, for instance by maintaining a playback buffer, then the 99th
+   late (for instance, by maintaining a playback buffer), then the 99th
    percentile can be a good metric for measuring application
    performance.  It does not work as well for applications that are very
    sensitive to overly delayed packets because the 99th percentile
    disregards all information about the delays of the worst 1% of
    packets.
 
-   It is not possible to compose 99th-percentile values as the Nth
+   It is not possible to compose 99th-percentile values, as the Nth
    percentile of a composed distribution cannot in general be derived
    from the Nth percentile of its constituent distributions without
    access to the full distributions.
@@ -2340,7 +2219,7 @@ B.8.  Round-trips Per Minute
    close to the user-perceived application performance of HTTP-based
    applications.  RPM loads the network before conducting latency
    measurements and is, therefore, a measure of loaded latency (also
-   known as working latency), and well-suited to detecting bufferbloat
+   known as working latency) and well-suited to detecting bufferbloat
    [Bufferbloat].
 
    RPM is not composable.
@@ -2351,10 +2230,10 @@ B.9.  Quality Attenuation
    dedicated latency distributions and packet loss probabilities into a
    single variable [TR-452.1].  It relates to user-observable outcomes
    in the sense that they can be measured using the Quality Attenuation
-   metric directly, or the Quality Attenuation value describing the
-   time-to-completion of a user-observable outcome can be computed if
-   the Quality Attenuation of each sub-goal required to reach the
-   desired outcome is known [Haeri22].
+   metric directly, or the Quality Attenuation value describing the time
+   to completion of a user-observable outcome can be computed if the
+   Quality Attenuation of each sub-goal required to reach the desired
+   outcome is known [Haeri22].
 
    Quality Attenuation is composable via convolution of the underlying
    distributions, which allows computing the time it takes to reach
@@ -2381,7 +2260,7 @@ B.10.  Quality of Outcome
    percentile summaries (see Section 3.1.1), this composability is not
    available.
 
-Appendix C.  Preliminary Insights From a Small-Scale User Testing
+Appendix C.  Preliminary Insights from a Small-Scale User Testing
              Campaign
 
    While subjective QoE testing as specified in the ITU-T P-series
@@ -2414,7 +2293,7 @@ Acknowledgments
    The authors would like to thank Gavin Young, Brendan Black, Kevin
    Smith, Gino Dion, Mayur Sarode, Greg Mirsky, Wim De Ketelaere, Peter
    Thompson, and Neil Davies for their contributions to the initial
-   version of this document.
+   draft version of this document.
 
    The authors would like to thank Paul Aitken, Mohamed Boucadair,
    Stuart Cheshire, Neil Davies, Gorry Fairhurst, Guiseppe Fioccola,
