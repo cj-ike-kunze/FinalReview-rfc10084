@@ -22,7 +22,28 @@ Abstract
    method for defining and evaluating application-specific, quality-
    focused network performance requirements to enable insights for
    network troubleshooting and optimization, and simple Quality of
+   Service scores for end-users. <--[rfced] How may this sentence in the
+   abstract be rephrased for clarity?  Specifically, we suggest
+   rephrasing "to enable insights [...] and scores" to "to provide X as
+   well as Y" or "to enable X and to provide Y".
+
+   Original Conceptually based on the Quality Attenuation metric, QoO
+   provides a method for defining and evaluating application-specific,
+   quality- focused network performance requirements to enable insights
+   for network troubleshooting and optimization, and simple Quality of
    Service scores for end-users.
+
+   Option A Conceptually based on the Quality Attenuation metric, QoO
+   provides a method for defining and evaluating application-specific,
+   quality- focused network performance requirements to provide insights
+   for network troubleshooting and optimization as well as simple
+   Quality of Service scores for end users.
+
+   Option B Conceptually based on the Quality Attenuation metric, QoO
+   provides a method for defining and evaluating application-specific,
+   quality- focused network performance requirements to enable insights
+   for network troubleshooting and optimization and to provide simple
+   Quality of Service scores for end-users.  -->
 
 Status of This Memo
 
@@ -161,10 +182,9 @@ Table of Contents
    latency distributions and packet loss probabilities and additionally
    considers throughput.  This design ensures spatial composability
    [RFC6049], enabling network operators to achieve fault isolation
-   (Section 5.4.4 of [I-D.ietf-opsawg-rfc5706bis]), advanced root-cause
-   analyses from within the network (Section 5.4.3 of
-   [I-D.ietf-opsawg-rfc5706bis]), and network planning while supporting
-   comprehensive end-to-end tests.
+   (Section 5.4.4 of [OPS-MGMT]), advanced root-cause analyses from
+   within the network (Section 5.4.3 of [OPS-MGMT]), and network
+   planning while supporting comprehensive end-to-end tests.
 
 1.1.  What's In?  What's Out?
 
@@ -403,7 +423,15 @@ Table of Contents
    - Optimal performance (ROP): Network conditions under which
    application performance becomes optimal - Unacceptable performance
    (CPUP): Network conditions under which application performance
-   becomes unacceptable
+   becomes unacceptable <!--[rfced] Will the shortened names be clear to
+   the reader, or would you like to update to match the expansions of
+   ROP and CPUP?
+
+   Original: * Optimal performance (ROP): Network conditions under which
+   application performance becomes optimal
+
+   *  Unacceptable performance (CPUP): Network conditions under which
+      application performance becomes unacceptable -->
 
    For throughput, requirements specify only a global minimum required
    value.
@@ -452,8 +480,7 @@ Table of Contents
 
    *  On-path telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
 
-   *  Latency tests under loaded network conditions
-      [I-D.ietf-ippm-responsiveness]
+   *  Latency tests under loaded network conditions [RPM]
 
    *  Throughput tests with included latency measures [Throughputtest]
 
@@ -743,11 +770,11 @@ Table of Contents
    direction (source-to-destination or destination-to-source).  There
    are three key scenarios:
 
-   *  The network meets all requirements for optimal performance (ROP)
+   *  The network meets all Requirements for Optimal Performance (ROP)
       and the throughput requirement.  QoO Score: 100%.
 
-   *  The network fails one or more criteria for conditions at the point
-      of unacceptable performance (CPUP) or the throughput requirement.
+   *  The network fails one or more criteria for Conditions at the Point
+      of Unacceptable Performance (CPUP) or the throughput requirement.
       QoO Score: 0%.
 
    *  The network performance falls between optimal and unacceptable
@@ -812,8 +839,8 @@ Table of Contents
    Packet loss is considered as a separate, single measurement that
    applies across the entire traffic sample, not at each percentile.
    The packet loss score is calculated using a similar interpolation
-   formula, but based on the measured mean packet loss ratio (MLoss) and
-   the packet loss thresholds defined in the ROP and CPUP:
+   formula, but based on the measured mean packet loss ratio (M_Loss)
+   and the packet loss thresholds defined in the ROP and CPUP:
 
    m = 1 - ((M_Loss - ROP_Loss) / (CPUP_Loss - ROP_Loss))
    QoO_loss = clamp(0, m, 1) * 100
@@ -862,7 +889,7 @@ Table of Contents
    Latency component:
 
    m1 = 1 - ((350 ms - 200 ms) / (500 ms - 200 ms)) = 1 - 0.5 = 0.5
-   m2 = 1 - ((37 5ms - 30 0ms) / (600 ms - 300 ms)) = 1 - 0.25 = 0.75
+   m2 = 1 - ((375 ms - 300 ms) / (600 ms - 300 ms)) = 1 - 0.25 = 0.75
    metrics = [clamp(0, m1, 1), clamp(0, m2, 1)] = [0.5, 0.75]
    QoO_latency = find_min(metrics) * 100 = 50
 
@@ -1006,7 +1033,7 @@ Table of Contents
    decisions, and traffic engineering policies may cause packets or
    flows to traverse different physical paths, each with potentially
    different latency, loss, and capacity characteristics.  Load
-   balancing, such as Equal-Cost Multi-Path (ECMP), can even mean that
+   balancing, such as Equal-Cost Multipath (ECMP), can even mean that
    measurements represent a mixture of the characteristics across all
    active routes rather than those of a single coherent path.
 
@@ -1029,11 +1056,11 @@ Table of Contents
 
    A related challenge arises when the application itself uses a
    transport protocol that exploits multiple paths concurrently, such as
-   Multipath TCP [RFC8684] or Multipath QUIC [I-D.ietf-quic-multipath].
-   In such cases, the scheduling of traffic across paths is application-
-   dependent and governed by many possible policies, including
-   preferring a specific path, minimizing latency, maximizing aggregate
-   capacity, distributing traffic equally, or minimizing path churn.
+   Multipath TCP [RFC8684] or Multipath QUIC [RFC10069].  In such cases,
+   the scheduling of traffic across paths is application-dependent and
+   governed by many possible policies, including preferring a specific
+   path, minimizing latency, maximizing aggregate capacity, distributing
+   traffic equally, or minimizing path churn.
 
    Single-flow measurements necessarily only follow one of the available
    paths at a time and may therefore fail to represent the full
@@ -1182,7 +1209,7 @@ Table of Contents
    This document does not define a standardized approach for creating a
    quality-focused network performance requirement specification.
    Instead, this section provides general guidance on and a rough
-   outline for deriving an admittingly subjective requirement
+   outline for deriving an admittedly subjective requirement
    specification, aiming to create a basis for future standardization
    efforts focusing on developing a standardized, objective requirement
    creation framework.  Additional information is provided in
@@ -1215,10 +1242,10 @@ Table of Contents
    gradually worsened by adding delay or packet loss or decreasing
    network capacity until the application no longer performs optimally.
    The corresponding network conditions identify the minimal
-   requirements for optimal performance (ROP).  Continuing to worsen the
+   Requirements for Optimal Performance (ROP).  Continuing to worsen the
    network conditions until the application fails completely will
-   eventually yield the network conditions at the point of unacceptable
-   performance (CPUP).
+   eventually yield the network Conditions at the Point of Unacceptable
+   Performance (CPUP).
 
    Note that different users may have different tolerance levels for
    application degradation.  Hence, tests conducted by a single entity
@@ -1258,7 +1285,7 @@ Table of Contents
    Radio access networks are prone to volatility: the available capacity
    for a given user device can change by an order of magnitude within
    seconds due to physical radio factors.  This is especially the case
-   in mobile cellular networks (as detailed in[CellularPredictability])
+   in mobile cellular networks (as detailed in [CellularPredictability])
    due to the increased transmission distance and the difficulty of
    adding new access points or repeaters (in comparison to, e.g., Wi-
    Fi).  Other factors in cellular volatility include whether the user
@@ -1281,7 +1308,7 @@ Table of Contents
    The two latency series (1,200,1,200,1,200,1,200,1,200) and
    (1,1,1,1,1,200,200,200,200,200) have identical distributions, but may
    have different application performance.  Ignoring this information is
-   a tradeoff between simplicity and precision.  To capture all
+   a trade-off between simplicity and precision.  To capture all
    information necessary to adequately capture outcomes quickly gets
    into extreme levels of overhead and high computational complexity.
    An application's performance depends on reactions to varying network
@@ -1502,29 +1529,6 @@ Table of Contents
               11, no. 3, pp. 45, DOI 10.3390/computers11030045, March
               2022, <https://doi.org/10.3390/computers11030045>.
 
-   [I-D.ietf-ippm-responsiveness]
-              Paasch, C., Meyer, R., Cheshire, S., and W. Hawkins,
-              "Responsiveness under Working Conditions", Work in
-              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
-              09, 6 July 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-ippm-responsiveness-09>.
-
-   [I-D.ietf-opsawg-rfc5706bis]
-              Claise, B., Clarke, J., Farrel, A., Barguil, S.,
-              Pignataro, C., and R. Chen, "Guidelines for Considering
-              Operations and Management in IETF Specifications", Work in
-              Progress, Internet-Draft, draft-ietf-opsawg-rfc5706bis-09,
-              6 October 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-rfc5706bis-09>.
-
-   [I-D.ietf-quic-multipath]
-              Liu, Y., Ma, Y., De Coninck, Q., Bonaventure, O., Huitema,
-              C., and M. Kühlewind, "Managing multiple paths for a QUIC
-              connection", Work in Progress, Internet-Draft, draft-ietf-
-              quic-multipath-21, 17 March 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              multipath-21>.
-
    [IRTT]     "Isochronous Round-Trip Tester", commit df70f1e, 1 August
               2026, <https://github.com/heistp/irtt>.
 
@@ -1554,6 +1558,13 @@ Table of Contents
               Proceedings of the ACM SIGCOMM 2024 Conference, pp.
               813-827, DOI 10.1145/3651890.3672243, August 2024,
               <https://doi.org/10.1145/3651890.3672243>.
+
+   [OPS-MGMT] Claise, B., Clarke, J., Farrel, A., Barguil, S.,
+              Pignataro, C., and R. Chen, "Guidelines for Considering
+              Operations and Management in IETF Specifications", Work in
+              Progress, Internet-Draft, draft-ietf-opsawg-rfc5706bis-09,
+              6 October 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-rfc5706bis-09>.
 
    [P.10]     ITU-T, "Vocabulary for performance, quality of service and
               quality of experience", ITU-T Recommendation P.10/G.100,
@@ -1754,10 +1765,15 @@ Table of Contents
               Metric Measurement", RFC 9946, DOI 10.17487/RFC9946, April
               2026, <https://www.rfc-editor.org/rfc/rfc9946>.
 
-   [RPM]      "Responsiveness under Working Conditions", Work in
-              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
-              01, July 2022, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-ippm-responsiveness>.
+   [RFC10069] Liu, Y., Ed., Ma, Y., De Coninck, Q., Ed., Bonaventure,
+              O., Huitema, C., and M. Kühlewind, Ed., "Managing Multiple
+              Paths for a QUIC Connection", RFC 10069,
+              DOI 10.17487/RFC10069, November 2026,
+              <https://www.rfc-editor.org/rfc/rfc10069>.
+
+   [RPM]      "Responsiveness under Working Conditions", July 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
+              responsiveness>.
 
    [RRUL]     Täht, D., "Real-time response under load test
               specification", 6 November 2012,
@@ -1841,7 +1857,7 @@ Appendix A.  QoO Framework Design Considerations
    lack of awareness of the problem".  This lack of awareness means that
    some operators might have little incentive to improve network quality
    beyond increasing the available network capacity.  For example,
-   despite the availability of open-source solutions such as FQ_CoDel
+   despite the availability of open-source solutions such as FQ-CoDel
    [RFC8290], which has been available for over a decade, vendors rarely
    implement them in widely deployed equipment (e.g., Wi-Fi routers
    still commonly exhibit bufferbloat).  A universally accepted network
@@ -1876,7 +1892,7 @@ A.1.  General Requirements
    quality framework and metric that is useful for end-users,
    application developers, and network operators/vendors alike.
    Specifically, this section outlines the three main general
-   requirements for such a framework, while the sections therafter
+   requirements for such a framework, while the subsequent sections
    describe requirements from the perspective of each of the target
    groups: end-users (Appendix A.2), application developers
    (Appendix A.3), and network operators (Appendix A.4).
@@ -2108,7 +2124,13 @@ Appendix B.  Comparison to Other Network Quality Metrics
    Appendix A.4 and [RFC6049]: the ability to combine measurements from
    individual path segments to derive end-to-end properties, or to
    decompose end-to-end measurements to isolate per-segment
-   contributions.
+   contributions. <!--[rfced] May a sentence be added below Table 1 to
+   expand IPDV and PDV?  They are expanded later in the titles of B.5
+   and B.6.
+
+   Perhaps: In Table 1, "IPDV" is Inter-Packet Delay Variation
+   (Appendix B.5), and "PDV" is Packet Delay Variation (Appendix B.6).
+   -->
 
 B.1.  Throughput
 
@@ -2212,15 +2234,33 @@ B.7.  Trimmed Mean of Latency
 
 B.8.  Round-trips Per Minute
 
-   Round-trips per minute [RPM] is a metric and test procedure
+   <--[rfced] To make the list parallel, may this sentence be updated as
+   follows?  Also, is it accurate to say that RPM "is a metric and a
+   test procedure"?  Perhaps it's more accurately the result of a test
+   procedure, i.e., the Responsiveness Test in [RPM]?
+
+   Original: Round-trips per minute [RPM] is a metric and test procedure
    specifically designed to measure delays as experienced by
    application-layer protocol procedures, such as HTTP GET, establishing
-   a TLS connection, and DNS lookups.  Hence, it measures something very
-   close to the user-perceived application performance of HTTP-based
-   applications.  RPM loads the network before conducting latency
-   measurements and is, therefore, a measure of loaded latency (also
-   known as working latency) and well-suited to detecting bufferbloat
-   [Bufferbloat].
+   a TLS connection, and DNS lookups.
+
+   Option A: Round-trips per minute [RPM] is a metric or a test
+   procedure to measure delays as experienced by application-layer
+   protocol procedures, such as HTTP GET requests, TLS connection
+   establishment, and DNS lookups.
+
+   Option B: Round-trips per minute [RPM] is a metric (which is the
+   result of a test procedure) to measure delays as experienced by
+   application-layer protocol procedures, such as HTTP GET requests, TLS
+   connection establishment, and DNS lookups.  --> Round-trips per
+   minute [RPM] is a metric and test procedure specifically designed to
+   measure delays as experienced by application-layer protocol
+   procedures, such as HTTP GET, establishing a TLS connection, and DNS
+   lookups.  Hence, it measures something very close to the user-
+   perceived application performance of HTTP-based applications.  RPM
+   loads the network before conducting latency measurements and is,
+   therefore, a measure of loaded latency (also known as working
+   latency) and well-suited to detecting bufferbloat [Bufferbloat].
 
    RPM is not composable.
 
@@ -2301,7 +2341,29 @@ Acknowledgments
    Kyzivat, Jason Livingood, Greg Mirsky, Tal Mizrahi, Luis Miguel
    Contreras Murillo, Jörg Ott, Tommy Pauly, Alexander Raake, Werner
    Robitza, Kevin Smith, Martin Thomson, and Michael Welzl for their
-   feedback and input to this document throughout the IETF process.
+   feedback and input to this document throughout the IETF process. <!--
+   [rfced] Please review the "Inclusive Language" portion of the online
+   Style Guide https://www.rfc-editor.org/authors/rfc-style-
+   guide/#inclusive-language (https://www.rfc-editor.org/authors/rfc-
+   style-guide/#inclusive-language) and let us know if any changes are
+   needed.  Updates of this nature typically result in more precise
+   language, which is helpful for readers.
+
+   Note that our script did not flag any words in particular, but this
+   should still be reviewed as a best practice.
+
+   In addition, please consider whether "traditional" should be updated
+   for clarity.
+   While the NIST website
+   https://web.archive.org/web/20250214092458/https://www.nist.gov/nist-
+   research-library/nist-technical-series-publications-author-
+   instructions#table1
+   (https://web.archive.org/web/20250214092458/https://www.nist.gov/
+   nist-research-library/nist-technical-series-publications-author-
+   instructions#table1) indicates that this term is potentially biased,
+   it is also ambiguous.
+   "Traditional" is a subjective term, as it is not the same for
+   everyone. -->
 
 Authors' Addresses
 
