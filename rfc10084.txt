@@ -3,10 +3,10 @@
 
 
 Internet Engineering Task Force (IETF)                 B. I. T. Monclair
-Request for Comments: 0                                         M. Olden
+Request for Comments: 10084                                     M. Olden
 Category: Informational                                    I. Kunze, Ed.
 ISSN: 2070-1721                                                  CUJO AI
-                                                                May 2026
+                                                           November 2026
 
 
                         Quality of Outcome (QoO)
@@ -38,7 +38,7 @@ Status of This Memo
 
    Information about the current status of this document, any errata,
    and how to provide feedback on it may be obtained at
-   https://www.rfc-editor.org/info/rfc0.
+   https://www.rfc-editor.org/info/rfc10084.
 
 Copyright Notice
 
@@ -1744,10 +1744,11 @@ Table of Contents
               DOI 10.17487/RFC10069, November 2026,
               <https://www.rfc-editor.org/rfc/rfc10069>.
 
-   [RPM]      "Responsiveness under Working Conditions", Work in
-              Progress, Internet-Draft, draft-ietf-ippm-responsiveness,
-              July 2022, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-ippm-responsiveness>.
+   [RPM]      Paasch, C., Meyer, R., Cheshire, S., and W. Hawkins,
+              "Responsiveness under Working Conditions", Work in
+              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
+              09, 6 July 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ippm-responsiveness-09>.
 
    [RRUL]     Täht, D., "Real-time response under load test
               specification", 6 November 2012,
