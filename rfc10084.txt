@@ -2,7 +2,7 @@
 
 
 
-Internet Engineering Task Force (IETF)                 B. I. T. Monclair
+Internet Engineering Task Force (IETF)             B. I. Teigen Monclair
 Request for Comments: 10084                                     M. Olden
 Category: Informational                                    I. Kunze, Ed.
 ISSN: 2070-1721                                                  CUJO AI
@@ -21,8 +21,8 @@ Abstract
    Conceptually based on the Quality Attenuation metric, QoO provides a
    method for defining and evaluating application-specific, quality-
    focused network performance requirements to enable insights for
-   network troubleshooting and optimization, and simple Quality of
-   Service scores for end-users.
+   network troubleshooting and optimization and to provide simple
+   Quality of Service scores for end users.
 
 Status of This Memo
 
@@ -93,7 +93,7 @@ Table of Contents
      5.2.  Missing Temporal Information in Distributions
      5.3.  Subsampling the Real Distribution
      5.4.  Assuming Linear Relationship Between Optimal Performance
-           and Unusable
+           and Unusability
      5.5.  Binary Throughput Threshold
      5.6.  Arbitrary Selection of Percentiles
    6.  Security Considerations
@@ -108,7 +108,7 @@ Table of Contents
      9.2.  Informative References
    Appendix A.  QoO Framework Design Considerations
      A.1.  General Requirements
-     A.2.  Requirements from End-Users
+     A.2.  Requirements from End Users
      A.3.  Requirements from Application and Platform Developers
      A.4.  Requirements from Network Operators and Network Solution
            Vendors
@@ -160,10 +160,10 @@ Table of Contents
    [TR-452.1], the QoO framework assesses the network state based on
    latency distributions and packet loss probabilities and additionally
    considers throughput.  This design ensures spatial composability
-   [RFC6049], enabling network operators to achieve fault isolation
-   (Section 5.4.4 of [OPS-MGMT]), advanced root-cause analyses from
-   within the network (Section 5.4.3 of [OPS-MGMT]), and network
-   planning while supporting comprehensive end-to-end tests.
+   [RFC6049], so network operators can isolate faults (Section 5.4.4 of
+   [OPS-MGMT]), run advanced root-cause analyses from within the network
+   (Section 5.4.3 of [OPS-MGMT]), and do network planning, all while
+   supporting full end-to-end tests.
 
 1.1.  What's In?  What's Out?
 
@@ -239,7 +239,7 @@ Table of Contents
       network conditions meet application-specific, quality-focused
       network performance requirements.  QoO is a QoS indicator that may
       be related to, but cannot be considered the same as, the actual
-      QoE of end-users.
+      QoE of end users.
 
    QoO score:  A numerical value that represents the distance-based
       assessment of network quality relative to application-specific,
@@ -287,9 +287,8 @@ Table of Contents
 2.1.  Background on Quality Attenuation
 
    Quality Attenuation is defined in the Broadband Forum standard
-   Quality of Experience Delivered (QED) [TR-452.1] and characterizes
-   network quality based on measurements of latency distributions and
-   packet loss probabilities.
+   [TR-452.1] and characterizes network quality based on measurements of
+   latency distributions and packet loss probabilities.
 
    Using latency distributions to measure network quality has been
    proposed by various researchers and practitioners (e.g., [Kelly],
@@ -323,7 +322,7 @@ Table of Contents
    network to satisfy a variety of application needs.  However,
    interpreting its raw distributional outputs and component
    decompositions can be difficult, especially for application
-   developers and end-users who might be primarily interested in
+   developers and end users who might be primarily interested in
    understanding whether specific applications will perform adequately.
 
    The QoO framework is specifically designed to address this limitation
@@ -333,18 +332,18 @@ Table of Contents
    network conditions to application-specific network performance
    requirements in an understandable and unambiguous way.  To that end,
    the design of the QoO framework is motivated by the needs of three
-   distinct stakeholder groups -- end-users, application developers, and
+   distinct stakeholder groups -- end users, application developers, and
    network operators -- and bridges the gap between the technical
    aspects of network performance and the practical needs of those who
    depend on it.
 
-   End-users need network quality metrics that are understandable and
+   End users need network quality metrics that are understandable and
    that relate as directly as possible to application performance, such
    as video smoothness, web page load times, or gaming responsiveness.
    The QoO framework addresses this need by basing the QoO score on
    objective QoS measurements while communicating network quality in
    intuitive terms, thereby creating a middle ground between QoS and QoE
-   metrics and allowing end-users to understand if a network is a likely
+   metrics and allowing end users to understand if a network is a likely
    source of impairment to the performance of applications.
 
    Application developers need the ability to express quality-focused
@@ -443,8 +442,8 @@ Table of Contents
    to packet loss measurements, while throughput measurements usually
    involve active testing.
 
-   In addition to measurement approaches standardized in the QED
-   framework [TR-452.1], some relevant techniques are:
+   In addition to measurement approaches standardized in the Quality
+   Attenuation framework [TR-452.1], some relevant techniques are:
 
    *  Active probing with the Two-Way Active Measurement Protocol
       (TWAMP) Light [RFC5357], the Simple Two-Way Active Measurement
@@ -639,7 +638,7 @@ Table of Contents
    packets need to arrive within 100 ms and 99.9% within 200 ms while
    tolerating at most 0.1% packet loss (ROP).  The perceived service
    becomes unacceptable if 99% of packets have not arrived within 200
-   ms, or 99.9% within 300ms, or if there is more than 2% packet loss
+   ms, or 99.9% within 300 ms, or if there is more than 2% packet loss
    (CPUP).  The underlying minimum throughput requirement is 4 Mbps.
 
                                       CPUP              ROP
@@ -785,8 +784,8 @@ Table of Contents
 3.3.2.  Latency Component
 
    The QoO latency score is based on linear interpolations of the
-   latency values at all latency percentiles defined in ROP / CPUP and
-   represents the minimum value for all percentiles:
+   latency values at all latency percentiles defined in ROP and CPUP.
+   It represents the minimum value for all percentiles:
 
    for i in latency_percentiles:
      m = 1 - ((ML[i] - ROP[i]) / (CPUP[i] - ROP[i]))
@@ -959,7 +958,7 @@ Table of Contents
    networks.  However, even without sharing raw data across all networks
    of an end-to-end path, QoO remains valuable for analyzing and
    troubleshooting individual network segments.  Operators can use QoO
-   to assess specific segments within their own networks, and end-users
+   to assess specific segments within their own networks, and end users
    can gain insights into their own connectivity as long as their
    network providers support QoO.  Hence, QoO is well-suited for
    incremental deployment (Section 2.1.2 of [RFC5218]).
@@ -1077,7 +1076,7 @@ Table of Contents
    resolutions can induce varying levels of perceived quality.
 
    The QoO framework can accommodate such applications by defining
-   multiple ROP/CPUP thresholds corresponding to different quality
+   multiple ROP and CPUP thresholds corresponding to different quality
    levels.  The framework can then assess how well the application will
    achieve each quality level, providing a more nuanced view of
    application performance than a simple binary pass/fail metric.
@@ -1299,7 +1298,7 @@ Table of Contents
    accurate and meaningful approach.
 
 5.4.  Assuming Linear Relationship Between Optimal Performance and
-      Unusable
+      Unusability
 
    It has been shown that, for example, interactivity cannot be modeled
    by a linear scale [G.1051].  Thus, the linear modeling proposed in
@@ -1388,9 +1387,9 @@ Table of Contents
 
    Active measurement techniques used to gather QoO data (e.g., TWAMP,
    STAMP, and synthetic traffic generation) can place additional load on
-   a network.  If not properly rate-limited, this may inadvertently
-   degrade services offered by a network or be exploited by malicious
-   actors to launch DoS attacks [RFC2330].
+   a network.  If not properly rate-limited, this measurement traffic
+   may inadvertently degrade services offered by a network or be
+   exploited by malicious actors to launch DoS attacks [RFC2330].
 
    To mitigate these risks, the following is recommended:
 
@@ -1787,9 +1786,9 @@ Appendix A.  QoO Framework Design Considerations
 
    This section describes the features and attributes that a network
    quality framework must have to be useful for different stakeholders:
-   application developers, end-users, and network operators.
+   application developers, end users, and network operators.
 
-   At a high level, end-users need an understandable network quality
+   At a high level, end users need an understandable network quality
    metric.  Application developers require a network quality metric that
    allows them to evaluate how well their application is likely to
    perform given the measured network performance.  Network operators
@@ -1817,7 +1816,7 @@ Appendix A.  QoO Framework Design Considerations
    large delay variations, and unmitigated packet loss are major causes
    of poor application outcomes.  The impact of latency is widely
    recognized in network engineering circles [BITAG], but benchmarking
-   the quality of network transport remains complex.  Most end-users are
+   the quality of network transport remains complex.  Most end users are
    unable to relate to metrics other than Mbps, which they have long
    been conditioned to think of as the only dimension of network
    quality.
@@ -1826,10 +1825,11 @@ Appendix A.  QoO Framework Design Considerations
    [RPM] make significant strides toward creating a network quality
    metric that is intended to be closer to application outcomes than
    available network capacity alone.  [RPM], in particular, is
-   successful at being relatively relatable and understandable to end-
-   users.  However, as noted in [RPM], "Our networks remain
-   unresponsive, not from a lack of technical solutions, but rather a
-   lack of awareness of the problem".  This lack of awareness means that
+   successful at being relatively relatable and understandable to end
+   users.  However, as noted in [RPM], "Our network connections continue
+   to suffer from an unacceptable amount of delay, not for a lack of
+   technical solutions, but rather a lack of awareness of the problem
+   and deployment of its solutions".  This lack of awareness means that
    some operators might have little incentive to improve network quality
    beyond increasing the available network capacity.  For example,
    despite the availability of open-source solutions such as FQ-CoDel
@@ -1840,7 +1840,7 @@ Appendix A.  QoO Framework Design Considerations
    networks provide the quality required by applications may help to
    increase the willingness of vendors to implement such solutions.
 
-   The IAB workshop on measuring Internet quality for end-users
+   The IAB workshop on measuring Internet quality for end users
    identified a key insight: users care primarily about application
    performance rather than network performance.  Among the conclusions
    was the statement, "A really meaningful metric for users is whether
@@ -1855,7 +1855,7 @@ Appendix A.  QoO Framework Design Considerations
    client, so absolute certainty is unattainable.  Second, different
    applications have different needs and adapt differently to network
    conditions.  A framework aiming to answer the stated question must
-   accommodate such diverse application requirements.  Third, end-users
+   accommodate such diverse application requirements.  Third, end users
    have individual tolerances for degradation in network conditions and
    the resulting effects on application experience.  These variations
    must be factored into the design of a suitable network quality
@@ -1864,12 +1864,12 @@ Appendix A.  QoO Framework Design Considerations
 A.1.  General Requirements
 
    This section describes the requirements for an objective network
-   quality framework and metric that is useful for end-users,
+   quality framework and metric that is useful for end users,
    application developers, and network operators/vendors alike.
    Specifically, this section outlines the three main general
    requirements for such a framework, while the subsequent sections
    describe requirements from the perspective of each of the target
-   groups: end-users (Appendix A.2), application developers
+   groups: end users (Appendix A.2), application developers
    (Appendix A.3), and network operators (Appendix A.4).
 
    In general, all stakeholders ultimately care about the performance of
@@ -1919,27 +1919,23 @@ A.1.  General Requirements
        contributions of different sub-outcomes and sub-paths of the
        network.
 
-   Next, the document presents requirements from the perspective of each
-   of the three target groups: end-users (Appendix A.2), application
-   developers (Appendix A.3), and network operators (Appendix A.4).
-
-A.2.  Requirements from End-Users
+A.2.  Requirements from End Users
 
    The QoO framework should facilitate a metric that is based on
    objective QoS measurements (such as throughput [RFC6349], packet loss
    [RFC6673] [RFC7680], delays [RFC2681] [RFC7679], and (one-way) delay
    variations [RFC3393]), correlated to application performance, and
-   relatively understandable for end-users, similar to QoE metrics, such
+   relatively understandable for end users, similar to QoE metrics, such
    as MOS [P.800.1].
 
    If these requirements are met, QoO is a middle ground between QoS and
-   QoE metrics and allows end-users to understand if a network is a
+   QoE metrics and allows end users to understand if a network is a
    likely source of impairment for what they care about: the outcomes of
    applications.  Examples are how quickly a web page loads, the
    smoothness of a video conference, or whether or not a video game has
    any perceptible lag.
 
-   End-users may have individual tolerances of session quality (i.e.,
+   End users may have individual tolerances of session quality (i.e.,
    the quality experienced during a single application usage period,
    such as a video call or gaming session), below which their quality of
    experience becomes personally unacceptable.  However, it may not be
@@ -1951,10 +1947,10 @@ A.2.  Requirements from End-Users
    application across a range of users, terminals, and network
    conditions to determine the terminal and network requirements that
    will meet the acceptability thresholds for a representative subset of
-   their end-users.  Performing UAT helps developers estimate what QoE
-   new end-users are likely to experience based on the application's
+   their end users.  Performing UAT helps developers estimate what QoE
+   new end users are likely to experience based on the application's
    network performance requirements.  These requirements can evolve and
-   improve based on feedback from end-users, and in turn better inform
+   improve based on feedback from end users, and in turn better inform
    the application's requirements towards the network.  Some real world
    examples where 'acceptable levels' have been derived by application
    developers include:
@@ -2005,14 +2001,14 @@ A.4.  Requirements from Network Operators and Network Solution Vendors
    allows finding the network quality bottlenecks and objectively
    comparing different networks, network configurations, and
    technologies.  To achieve this goal, the framework must support
-   mathematically sound compositionality ('addition' and 'subtraction')
-   as network operators rarely manage network traffic end-to-end.  If a
+   mathematically sound composability ('addition' and 'subtraction') as
+   network operators rarely manage network traffic end-to-end.  If a
    test is purely end-to-end, the ability to find bottlenecks may be
    gone.  If, however, measurements can be taken in both end-to-end
    (e.g., a-b-c-d-e) and partial (e.g., a-b-c) fashion, the results can
    be decomposed to isolate the areas outside the influence of a network
    operator.  In other words, the network quality of a-b-c and d-e can
-   be separated.  Compositionality is essential for fault detection and
+   be separated.  Composability is essential for fault detection and
    accountability.
 
    By having mathematically correct composition, a network operator can
@@ -2088,18 +2084,26 @@ Appendix B.  Comparison to Other Network Quality Metrics
 
              Table 1: Summary of Performance Metrics Properties
 
-   The column "Can Assess How Well Applications Are Expected to Work"
-   indicates whether a metric can, in principle, capture relevant
-   information to assess application performance, assuming that
-   measurements cover the properties of the end-to-end network path that
-   the application uses.  "Easy to Articulate Application Requirements"
-   refers to the ease with which application-specific requirements can
-   be expressed using the respective metric.  "Composable" indicates
-   whether the metric supports spatial composition as described in
-   Appendix A.4 and [RFC6049]: the ability to combine measurements from
-   individual path segments to derive end-to-end properties, or to
-   decompose end-to-end measurements to isolate per-segment
-   contributions.
+   In Table 1, "IPDV" refers to Inter-Packet Delay Variation (see
+   Appendix B.5), and "PDV" refers to Packet Delay Variation (see
+   Appendix B.6).  The columns indicate how each metric reflects the
+   three criteria established in Appendix A.1:
+
+   *  "Can Assess How Well Applications Are Expected to Work" indicates
+      whether a metric can, in principle, capture relevant information
+      to assess application performance, assuming that measurements
+      cover the properties of the end-to-end network path that the
+      application uses.
+
+   *  "Easy to Articulate Application Requirements" is the ease with
+      which application-specific requirements can be expressed using the
+      respective metric.
+
+   *  "Composable" indicates whether the metric supports spatial
+      composition as described in Appendix A.4 and [RFC6049]: the
+      ability to combine measurements from individual path segments to
+      derive end-to-end properties, or to decompose end-to-end
+      measurements to isolate per-segment contributions.
 
 B.1.  Throughput
 
@@ -2203,15 +2207,15 @@ B.7.  Trimmed Mean of Latency
 
 B.8.  Round-trips Per Minute
 
-   Round-trips per minute [RPM] is a metric and test procedure
-   specifically designed to measure delays as experienced by
-   application-layer protocol procedures, such as HTTP GET, establishing
-   a TLS connection, and DNS lookups.  Hence, it measures something very
+   Round-trips per minute [RPM] is the result of the Responsiveness
+   Test, which measures delays as experienced by application-layer
+   protocol procedures, such as HTTP GET requests, TLS connection
+   establishment, and DNS lookups.  Hence, RPM reflects something very
    close to the user-perceived application performance of HTTP-based
-   applications.  RPM loads the network before conducting latency
-   measurements and is, therefore, a measure of loaded latency (also
-   known as working latency) and well-suited to detecting bufferbloat
-   [Bufferbloat].
+   applications.  The Responsiveness Test loads the network before
+   conducting latency measurements so that RPM is a measure of loaded
+   latency (also known as working latency) and well-suited to detecting
+   bufferbloat [Bufferbloat].
 
    RPM is not composable.
 
@@ -2263,7 +2267,7 @@ Appendix C.  Preliminary Insights from a Small-Scale User Testing
    trial surveys.
 
    Participants found QoO scores more intuitive and actionable than
-   traditional metrics (e.g., speed tests).  QoO directly aligned with
+   existing metrics (e.g., speed tests).  QoO directly aligned with
    their self-reported experiences, increasing trust and engagement.
 
    These results indicate that users find it easier to correlate QoO
